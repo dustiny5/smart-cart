@@ -1,7 +1,7 @@
 Smart Cart
 
 Tech Stack:
-- Webapp: React Next.js, Tailwind CSS
+- Webapp: React 19 Typescript, Tailwind CSS
 - API: Spring Boot, AI Model, PostgreSQL
 - Authentication: JWT, Spring Security
 
