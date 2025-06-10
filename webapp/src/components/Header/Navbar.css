@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+.navbar {
+	@apply flex m-4;
+}
+.navbar-brand {
+	@apply pr-8 text-lg font-bold;
+}
+
+.navbar-side {
+	@apply flex space-x-6 text-sm;
+}
+
+.navbar-side-shop {
+	@apply flex space-x-2 items-center;
+}
+
+.navbar-menu {
+	@apply flex flex-auto items-center justify-between bg-white text-[#3C403D];
+}
+.navbar-side-login-register {
+	@apply flex font-semibold;
+}
