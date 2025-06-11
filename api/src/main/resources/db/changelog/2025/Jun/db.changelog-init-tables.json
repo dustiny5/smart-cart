@@ -71,7 +71,7 @@
                                         "name": "updated_at",
                                         "type": "timestamp",
                                         "constraints": {
-                                            "nullable": false
+                                            "nullable": true
                                         }
                                     }
                                 }
@@ -161,7 +161,7 @@
                                         "name": "updated_at",
                                         "type": "timestamp",
                                         "constraints": {
-                                            "nullable": false
+                                            "nullable": true
                                         }
                                     }
                                 }

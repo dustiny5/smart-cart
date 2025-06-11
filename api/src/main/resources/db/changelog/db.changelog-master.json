@@ -4,6 +4,16 @@
             "include": {
                 "file": "db/changelog/2025/Jun/db.changelog-init-tables.json"
             }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/Jun/db.changelog-auto-increment-pk-modify-data-type.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/Jun/db.changelog-add-hat-add-products.json"
+            }
         }
     ]
 }
