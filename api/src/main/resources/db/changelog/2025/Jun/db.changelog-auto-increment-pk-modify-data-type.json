@@ -1,0 +1,65 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "2025-06-10-auto-increment-primary-keys",
+                "author": "Yang, Dustin",
+                "changes": [
+
+                    {
+                        "addAutoIncrement": {
+                            "columnName": "id",
+                            "tableName": "category",
+                            "schemaName": "smart_cart"
+                        }
+                    },
+                    {
+                        "addAutoIncrement": {
+                            "columnName": "id",
+                            "tableName": "product",
+                            "schemaName": "smart_cart"
+                        }
+                    },
+                    {
+                        "addAutoIncrement": {
+                            "columnName": "id",
+                            "tableName": "user",
+                            "schemaName": "smart_cart"
+                        }
+                    },
+                    {
+                        "addAutoIncrement": {
+                            "columnName": "id",
+                            "tableName": "order",
+                            "schemaName": "smart_cart"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "changeSet": {
+                "id": "2025-06-10-modify-tags-&-price-data-type",
+                "author": "Yang, Dustin",
+                "changes": [
+                    {
+                        "modifyDataType": {
+                            "columnName": "price",
+                            "newDataType": "numeric(10,2)",
+                            "schemaName": "smart_cart",
+                            "tableName": "product"
+                        }
+                    },
+                    {
+                        "modifyDataType": {
+                            "columnName": "tags",
+                            "newDataType": "text[]",
+                            "schemaName": "smart_cart",
+                            "tableName": "product"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
