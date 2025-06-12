@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+.dropdown-btn {
+	@apply text-lg;
+}
+.dropdown-container {
+	@apply flex;
+}
+.dropdown-link {
+	@apply text-sm;
+}
+
+.dropdown-content {
+	@apply flex flex-col;
+}
