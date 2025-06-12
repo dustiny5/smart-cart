@@ -4,11 +4,11 @@
 	@apply flex m-4;
 }
 .navbar-brand {
-	@apply pr-8 text-lg font-bold;
+	@apply pr-8 text-2xl font-bold;
 }
 
 .navbar-side {
-	@apply flex space-x-6 text-sm;
+	@apply flex space-x-6 text-lg;
 }
 
 .navbar-side-shop {
