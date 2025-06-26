@@ -1,6 +1,6 @@
 package com.smartcart.api.model.mapper;
 
-import java.util.Set;
+import java.util.List;
 
 import org.mapstruct.Mapper;
 
@@ -12,6 +12,6 @@ public interface ProductMapper {
     ProductDTO toDTO(Product product);
     Product toEntity(ProductDTO productDTO);
 
-    Set<ProductDTO> toDTOs(Set<Product> products);
-    Set<Product> toEntities(Set<ProductDTO> productDTOs);
+    List<ProductDTO> toDTOs(List<Product> products);
+    List<Product> toEntities(List<ProductDTO> productDTOs);
 }
