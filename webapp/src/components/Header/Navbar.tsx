@@ -1,4 +1,5 @@
 import './Navbar.css';
+import Shop from './Shop';
 
 const Navbar = () => {
 	return (
@@ -8,23 +9,8 @@ const Navbar = () => {
 				<div className="navbar-menu">
 					<ul className="navbar-side text=[#737373] font-bold">
 						<button type="button">Home</button>
-						<button className="navbar-side-shop">
-							<text>Shop</text>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={1.5}
-								stroke="currentColor"
-								className="size-4"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="m19.5 8.25-7.5 7.5-7.5-7.5"
-								/>
-							</svg>
-						</button>
+						<Shop />
+
 						<button>About</button>
 						<button>Blog</button>
 						<button>Contact</button>
