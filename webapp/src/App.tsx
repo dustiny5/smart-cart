@@ -1,4 +1,4 @@
-import { Navbar, DropDown } from './components';
+import { Navbar } from './components';
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -8,7 +8,6 @@ const App = () => {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<Navbar />
-			<DropDown />
 		</QueryClientProvider>
 	);
 };
