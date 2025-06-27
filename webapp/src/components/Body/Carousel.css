@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+.carousel {
+	@apply relative overflow-hidden;
+}
+.carousel-items {
+	@apply flex transition-transform duration-500;
+}
+.carousel-next {
+	@apply absolute top-1/2 right-2 text-white text-6xl text-shadow-md;
+}
+.carousel-previous {
+	@apply absolute top-1/2 left-2 text-white text-6xl text-shadow-md;
+}
+.carousel-items img {
+	@apply w-full;
+}
