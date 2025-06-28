@@ -2,7 +2,7 @@
     "databaseChangeLog": [
         {
             "include": {
-                "file": "db/changelog/2025/db.changelog-2025.json"
+                "file": "db/changelog/2025/Jun/db.changelog-jun.json"
             }
         }
     ]
