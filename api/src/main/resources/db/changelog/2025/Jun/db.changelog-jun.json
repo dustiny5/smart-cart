@@ -12,7 +12,17 @@
         },
         {
             "include": {
-                "file": "db/changelog/2025/Jun/db.changelog-add-hat-add-products.json"
+                "file": "db/changelog/2025/Jun/db.changelog-add-hats-add-products.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/Jun/db.changelog-add-shirts-add-products.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/Jun/db.changelog-update-hats-imageURL.json"
             }
         }
     ]
