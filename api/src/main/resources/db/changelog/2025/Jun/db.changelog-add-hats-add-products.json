@@ -1,0 +1,523 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-06-10-add-category",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "insert": {
+              "tableName": "category",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Hats"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2025-06-10-add-hat-products",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Sunset Trucker Cap"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Mesh-backed cap with sunset patch detail."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 19.99
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{summer,classic,adjustable}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Heritage Snapback"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Vintage-inspired flat-brim snapback hat."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 24.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{snapback,classic}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Monogram Dad Hat"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Soft crown hat with embroidered monogram."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 22.5
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{embroidered,adjustable}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Coastal Breeze Cap"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Lightweight summer hat with stitched logo."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 18.75
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{summer,embroidered}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Urban Snap Curve"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Curved brim snapback with urban stitched patch."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 27.25
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{snapback,embroidered,adjustable}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Clean Crown Hat"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Minimalist crown hat in washed cotton."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 20.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{classic,minimal}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Script Logo Cap"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Adjustable cap with signature script embroidery."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 21.45
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{embroidered,adjustable,classic}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Ridge Snapback"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Structured ridge cap with snapback closure."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 25.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{snapback,adjustable}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Retro Foam Front Hat"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Foam-front hat with nostalgic throwback style."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 17.99
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{vintage,summer}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Tonal Low-Profile Cap"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Low-profile tonal cap for subtle everyday wear."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 22.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{minimal,adjustable}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": ""
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 1
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
