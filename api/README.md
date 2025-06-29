@@ -31,4 +31,6 @@ To setup the environment variables for VSCode editor.
 }
 ```
 
+If mappers are added/updated, then run `mvn clean compile` to update the target directory.
+
 For Intellij, use this [guide](https://www.baeldung.com/intellij-idea-environment-variables).

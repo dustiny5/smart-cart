@@ -1,0 +1,523 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-06-28-add-category",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "insert": {
+              "tableName": "category",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Shirts"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2025-06-28-add-shirt-products",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Vintage Surf Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Retro-style shirt perfect for casual days at the beach."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 25.99
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{vintage,minimal,eco}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmxXpa.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "EcoFit Sport Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Breathable sport tee made with eco-conscious materials."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 28.49
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{sporty,eco,minimal}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmTv4V.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Mono Minimal Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Simple and sleek black tee for a minimalist look."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 19.95
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{minimal}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmuLNe.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Skull Art Graphic Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Bold graphic tee with an artistic skull print."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 31.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{graphic,vintage}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRm78eS.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Street Sport Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Urban tee that balances comfort and athletic flair."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 26.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{sporty,graphic,eco,vintage}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmaYSR.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Neutral Earth Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Earth-toned tee with a relaxed fit and eco-friendly fabric."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 23.0
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{eco,minimal}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmcQ2f.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Pop Graphic Punch Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Eye-catching graphic tee inspired by pop art."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 29.75
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{graphic,sporty}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRm1XXS.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Heritage Vibe Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Classic design with vintage heritage prints."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 24.6
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{vintage,eco}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmG40F.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Cleanline Minimal Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Crisp white shirt with a clean, minimal finish."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 18.9
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{minimal}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmVSF1.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "product",
+              "columns": [
+                {
+                  "column": {
+                    "name": "name",
+                    "value": "Fusion Core Tee"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "description",
+                    "value": "Hybrid style tee for active and stylish wearers."
+                  }
+                },
+                {
+                  "column": {
+                    "name": "price",
+                    "valueNumeric": 27.9
+                  }
+                },
+                {
+                  "column": {
+                    "name": "tags",
+                    "value": "{sporty,graphic,minimal,vintage,eco}"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmXmTG.png"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "updated_at",
+                    "valueComputed": "CURRENT_TIMESTAMP"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "category_id",
+                    "valueNumeric": 2
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

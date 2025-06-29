@@ -1,0 +1,152 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-06-28-update-hats-products",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Sunset Trucker Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRbE0W7.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Heritage Snapback'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRbElxS.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Monogram Dad Hat'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRbEYOl.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Coastal Breeze Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRbElxS.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Urban Snap Curve'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmkEPf.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Clean Crown Hat'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRm8ZaR.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Script Logo Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmUffa.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Ridge Snapback'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmgZaj.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Retro Foam Front Hat'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRmreoP.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Tonal Low-Profile Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "image_url",
+                    "value": "https://iili.io/FRm40eR.png"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
