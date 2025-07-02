@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smartcart.api.model.dto.CategoryDTO;
+import com.smartcart.api.model.dto.ProductDTO;
 import com.smartcart.api.service.CategoryService;
+import com.smartcart.api.service.ProductService;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,6 +34,9 @@ public class ApiController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ProductService productService;
+
     @Operation(summary = "Find all categories with their products", 
         description = "Retrieves a list of all categories along with their associated products.")
     @ApiResponses(value = { 
@@ -44,6 +49,20 @@ public class ApiController {
     @GetMapping("/category/products")
     public List<CategoryDTO> getAllCategoryProducts() {
         return categoryService.getAllCategoryProducts();
+    }
+
+    @Operation(summary = "Find all best seller products", 
+        description = "Retrieves a list of all best selling products.")
+    @ApiResponses(value = { 
+    @ApiResponse(responseCode = "200", description = "Found all best selling products", 
+        content = { @Content(mediaType = "application/json") }),
+    @ApiResponse(responseCode = "404", description = "Products not found", 
+        content = @Content), 
+    @ApiResponse(responseCode = "500", description = "Server error", 
+        content = @Content) })
+    @GetMapping("/products/bestSeller")
+    public List<ProductDTO> getProductsIsBestSeller() {
+        return productService.getProductsIsBestSeller();
     }
     
 }

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import com.smartcart.api.model.dto.ProductDTO;
 import com.smartcart.api.model.entity.Product;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = CategoryMapper.class)
 public interface ProductMapper {
     ProductDTO toDTO(Product product);
     Product toEntity(ProductDTO productDTO);

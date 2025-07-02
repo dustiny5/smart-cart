@@ -41,7 +41,7 @@ public class Product {
 
     private LocalDateTime updatedAt;
 
-    private Boolean is_best_seller;
+    private Boolean isBestSeller;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
