@@ -31,11 +31,6 @@ public class ApiController {
 
     @Autowired
     private CategoryService categoryService;
-    
-    @GetMapping("/hello")
-    public String helloWorld() {
-        return "Hello, World!";
-    }
 
     @Operation(summary = "Find all categories with their products", 
         description = "Retrieves a list of all categories along with their associated products.")
