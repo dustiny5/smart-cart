@@ -2,7 +2,10 @@ package com.smartcart.api.controller;
 
 import java.util.List;
 
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,18 +54,18 @@ public class ApiController {
         return categoryService.getAllCategoryProducts();
     }
 
-    @Operation(summary = "Find all best seller products", 
-        description = "Retrieves a list of all best selling products.")
+    @Operation(summary = "Find page(s) of best seller products", 
+        description = "Retrieves page(s) of best selling products.")
     @ApiResponses(value = { 
-    @ApiResponse(responseCode = "200", description = "Found all best selling products", 
+    @ApiResponse(responseCode = "200", description = "Find page(s) of best selling products", 
         content = { @Content(mediaType = "application/json") }),
     @ApiResponse(responseCode = "404", description = "Products not found", 
         content = @Content), 
     @ApiResponse(responseCode = "500", description = "Server error", 
         content = @Content) })
     @GetMapping("/products/bestSeller")
-    public List<ProductDTO> getProductsIsBestSeller() {
-        return productService.getProductsIsBestSeller();
+    public Page<ProductDTO> getProductsIsBestSeller(@ParameterObject Pageable pageable) {
+        return productService.getProductsIsBestSeller(pageable);
     }
     
 }
