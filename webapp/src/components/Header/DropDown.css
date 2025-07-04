@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .dropdown {
-	@apply absolute font-normal shadow-md p-4 rounded-md;
+	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
 }
 .dropdown h4 {
 	@apply font-semibold mb-3;
