@@ -9,22 +9,34 @@ const images = [
 ];
 
 const Carousel = () => {
-	const [imageIndex, setImageIndex] = useState(0);
+	const [imageIndex, setImageIndex] = useState(1);
+	const [transition, setTransition] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+	const totalImages = images.length;
+	const addedImages = [images[totalImages - 1], ...images, images[0]]
 
 	const handleNext = () => {
-		if (imageIndex === images.length - 1) {
-			setImageIndex(0);
-		} else {
-			setImageIndex((prev) => prev + 1);
-		}
+    if(isTransitioning) return;
+    setIsTransitioning(true);
+		setImageIndex((prev) => prev + 1);
+		setTransition(true);
 	};
 
 	const handlePrevious = () => {
+    if(isTransitioning) return;
+    setIsTransitioning(true);
+		setImageIndex((prev) => prev - 1);
+		setTransition(true);
+	};
+
+	const handleTransitionEnd = () => {
 		if (imageIndex === 0) {
-			setImageIndex(images.length - 1);
-		} else {
-			setImageIndex((prev) => prev - 1);
+			setImageIndex(totalImages);
+		} else if (imageIndex === totalImages + 1) {
+			setImageIndex(1);
 		}
+    setIsTransitioning(false);
+    setTransition(false);
 	};
 
 	return (
@@ -32,22 +44,38 @@ const Carousel = () => {
 			<div
 				className="carousel-items"
 				style={{
-					width: `${images.length * 100}%`,
-					transform: `translateX(-${
-						imageIndex * (100 / images.length)
-					}%)`,
+					transform: `translateX(-${imageIndex * (100 / addedImages.length)}%)`,
+					transition: transition ? 'transform 0.5s ease-in-out' : 'none',
+					width: `${addedImages.length * 100}%`,
+
 				}}
+				onTransitionEnd={handleTransitionEnd}
 			>
-				{images.map((image, index) => (
-					<img key={index} src={image} alt={`Image: ${index + 1}`} />
+				{addedImages.map((img, idx) => (
+					<img key={idx} src={img} alt={`Image: ${idx}`} />
 				))}
 			</div>
 			<button className="carousel-previous" onClick={handlePrevious}>
-				{'<'}
+				‹
 			</button>
 			<button className="carousel-next" onClick={handleNext}>
-				{'>'}
+				›
 			</button>
+
+      <div className="carousel-slider">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              if (isTransitioning) return;
+              setImageIndex(idx + 1);
+              setTransition(true);
+              setIsTransitioning(true);
+            }}
+            className={`${imageIndex === idx + 1 ? 'bg-white' : 'bg-white/50'}`}
+          />
+        ))}
+      </div>
 		</div>
 	);
 };
