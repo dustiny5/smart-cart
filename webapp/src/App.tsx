@@ -1,4 +1,4 @@
-import { Carousel, Navbar } from './components';
+import { BestSeller, Carousel, Navbar } from './components';
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -9,6 +9,7 @@ const App = () => {
 		<QueryClientProvider client={queryClient}>
 			<Navbar />
 			<Carousel />
+			<BestSeller />
 		</QueryClientProvider>
 	);
 };

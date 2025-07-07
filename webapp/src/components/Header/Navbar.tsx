@@ -5,9 +5,9 @@ const Navbar = () => {
 	return (
 		<header className="header">
 			<nav className="navbar">
-				<h3 className="navbar-brand">Smart Cart</h3>
+				<h3 className="navbar-brand text-color">Smart Cart</h3>
 				<div className="navbar-menu">
-					<ul className="navbar-side text=[#737373] font-bold">
+					<ul className="navbar-side secondary-text font-bold">
 						<button type="button">Home</button>
 						<Shop />
 
@@ -16,7 +16,7 @@ const Navbar = () => {
 						<button>Contact</button>
 						<button>Pages</button>
 					</ul>
-					<ul className="navbar-side text-[#23A6F0]">
+					<ul className="navbar-side primary-text">
 						<button className="navbar-side-login-register">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

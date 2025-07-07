@@ -35,24 +35,17 @@ const DropDown = ({
 				{isSuccess &&
 					data.map((item: any) => (
 						<div key={item.id} className="dropdown-content">
-							<h4>{item.name}</h4>
+							<h4 className="text-color">{item.name}</h4>
 							{item.products.map((product: any) => (
 								<button
 									key={product.id}
-									className="dropdown-item"
+									className="dropdown-item secondary-text"
 								>
 									{product.name}
 								</button>
 							))}
 						</div>
 					))}
-				{/* Delete and add more categories later... */}
-				<div className="dropdown-content">
-					<h4>Hats</h4>
-					<button className="dropdown-item">Link 4</button>
-					<button className="dropdown-item">Link 5</button>
-					<button className="dropdown-item">Link 6</button>
-				</div>
 			</div>
 		</div>
 	);

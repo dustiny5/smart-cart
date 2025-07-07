@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="category")
+@Table(name="category", schema="smart_cart")
 @NamedEntityGraph(
     name = "Category.products",
     attributeNodes = @NamedAttributeNode("products")
