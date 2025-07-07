@@ -4,13 +4,13 @@
 	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
 }
 .dropdown h4 {
-	@apply font-semibold mb-3;
+	@apply font-bold mb-3;
 }
 .dropdown-container {
 	@apply flex space-x-6 ml-16;
 }
 .dropdown-item {
-	@apply text-sm font-medium mb-1 text-[#737373];
+	@apply text-sm font-medium mb-1;
 }
 
 .dropdown-content {

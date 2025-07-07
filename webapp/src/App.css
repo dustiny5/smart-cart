@@ -5,4 +5,32 @@
 	[role='button']:not(:disabled) {
 		cursor: pointer;
 	}
+	h1 {
+		font-size: var(--text-2xl);
+	}
+	h2 {
+		font-size: var(--text-xl);
+	}
+	h3 {
+		font-size: var(--text-lg);
+	}
+	h4 {
+		font-size: var(--text-base);
+	}
+	h5 {
+		font-size: var(--text-sm);
+	}
+	h6 {
+		font-size: var(--text-xs);
+	}
+}
+
+.primary-text {
+	@apply text-[#23A6F0];
+}
+.secondary-text {
+	@apply text-[#737373];
+}
+.text-color {
+	@apply text-[#252B42];
 }
