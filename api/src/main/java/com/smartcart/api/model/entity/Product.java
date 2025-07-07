@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "product")
+@Table(name = "product", schema="smart_cart")
 @Getter
 @Setter
 public class Product {
