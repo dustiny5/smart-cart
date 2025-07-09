@@ -1,2 +1,1 @@
-export { default as Carousel } from './Carousel';
-export { default as BestSeller } from './BestSeller';
+export { default as Body } from './Body';
