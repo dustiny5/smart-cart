@@ -1,14 +1,19 @@
 import './Navbar.css';
 import Shop from './Shop';
 
-const Navbar = () => {
+type NavbarProps = {
+	onHandleHomeClick: () => void;
+};
+const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
 	return (
 		<header className="header">
 			<nav className="navbar">
-				<h3 className="navbar-brand text-color">Smart Cart</h3>
+				<h3 className="navbar-brand text-color">
+					<button onClick={onHandleHomeClick}>Smart Cart</button>
+				</h3>
 				<div className="navbar-menu">
 					<ul className="navbar-side secondary-text font-bold">
-						<button type="button">Home</button>
+						<button onClick={onHandleHomeClick}>Home</button>
 						<Shop />
 
 						<button>About</button>

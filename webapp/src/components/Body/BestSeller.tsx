@@ -1,18 +1,21 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import Divider from '../Divider';
 import './BestSeller.css';
+import type { Product } from '../type';
 
 const DEFAULT_SIZE = 3;
-type Product = {
-	id: number;
-	name: string;
-	description: string;
-	price: number;
-	tags: string[];
-	imageUrl: string;
+
+type BestSellerProps = {
+	onSetShowProductDetails: React.Dispatch<
+		React.SetStateAction<Product | undefined>
+	>;
+	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const BestSeller = () => {
+const BestSeller = ({
+	onSetShowProductDetails,
+	onSetResetToggle,
+}: BestSellerProps) => {
 	const {
 		data,
 		error,
@@ -37,6 +40,11 @@ const BestSeller = () => {
 		staleTime: Infinity,
 	});
 
+	const handleClick = (item: Product) => {
+		onSetResetToggle(true);
+		onSetShowProductDetails(item);
+	};
+
 	return (
 		<div className="best-seller">
 			<Divider size="md" />
@@ -59,7 +67,7 @@ const BestSeller = () => {
 									src={item.imageUrl}
 									alt={`${item.name}`}
 								/>
-								<button>
+								<button onClick={() => handleClick(item)}>
 									<div>{item.name}</div>
 									<div>{`$${item.price}`}</div>
 								</button>
