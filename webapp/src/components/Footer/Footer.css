@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.footer {
+	@apply px-48;
+}
+.footer h3 {
+	@apply text-2xl font-bold;
+}
+.footer img {
+	@apply w-6 h-6;
+}
+.footer-title {
+	@apply flex justify-between;
+}
+.footer-socials {
+	@apply flex space-x-3;
+}
+.footer p {
+	@apply font-bold mb-4;
+}
