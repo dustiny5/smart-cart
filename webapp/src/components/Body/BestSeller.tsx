@@ -77,13 +77,16 @@ const BestSeller = ({
 				))}
 			</div>
 			{hasNextPage && (
-				<button
-					className="best-seller-load-more-btn primary-text"
-					onClick={() => fetchNextPage()}
-					disabled={isFetchingNextPage}
-				>
-					Load More
-				</button>
+				<>
+					<button
+						className="best-seller-load-more-btn primary-text"
+						onClick={() => fetchNextPage()}
+						disabled={isFetchingNextPage}
+					>
+						Load More
+					</button>
+					<Divider size="md" />
+				</>
 			)}
 		</div>
 	);
