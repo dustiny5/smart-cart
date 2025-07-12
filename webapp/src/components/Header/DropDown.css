@@ -12,7 +12,6 @@
 .dropdown-item {
 	@apply text-sm font-medium mb-1;
 }
-
 .dropdown-content {
 	@apply flex flex-col items-start;
 }

@@ -10,7 +10,6 @@
 .navbar-side {
 	@apply flex space-x-6 text-lg;
 }
-
 .navbar-side-shop {
 	@apply flex space-x-2 items-center;
 }
