@@ -3,11 +3,9 @@
 .best-seller {
 	@apply text-center mx-25;
 }
-
 .best-seller h3 {
 	@apply text-[#252B42] font-bold;
 }
-
 .best-seller-cards-row {
 	@apply grid grid-cols-3;
 }

@@ -6,10 +6,10 @@ type DividerProps = {
 const Divider = ({ size = 'none', lineColor }: DividerProps) => {
 	// https://tailwindcss.com/docs/detecting-classes-in-source-files#dynamic-class-names
 	const sizeVariants = {
-		none: 'pt-0',
-		sm: 'pt-10',
-		md: 'pt-25',
-		lg: 'pt-50',
+		none: 'mt-0',
+		sm: 'mt-10',
+		md: 'mt-25',
+		lg: 'mt-50',
 	};
 
 	const lineVariants = {
@@ -20,7 +20,7 @@ const Divider = ({ size = 'none', lineColor }: DividerProps) => {
 		<div
 			className={
 				lineColor
-					? `${lineVariants[lineColor]} border-1 opacity-25 rounded-2xl w-full h-[1px]`
+					? `${sizeVariants[size]} ${lineVariants[lineColor]} border-1 opacity-25 rounded-2xl w-full h-[1px]`
 					: sizeVariants[size]
 			}
 		></div>

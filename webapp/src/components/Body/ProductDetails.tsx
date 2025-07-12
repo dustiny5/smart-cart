@@ -31,6 +31,7 @@ const ProductDetails = ({ item }: ProductDetailProps) => {
 					</>
 				)}
 			</div>
+			<Divider size="md" />
 		</>
 	);
 };

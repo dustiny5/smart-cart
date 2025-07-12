@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+
 .carousel {
 	@apply relative overflow-hidden;
 }
@@ -17,6 +18,6 @@
 .carousel-slider {
 	@apply absolute bottom-3 w-full flex justify-center gap-2;
 }
-.carousel-slider button{
+.carousel-slider button {
 	@apply w-10 h-2 rounded-xs;
 }
