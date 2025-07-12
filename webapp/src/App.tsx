@@ -1,4 +1,4 @@
-import { Body, Navbar } from './components';
+import { Body, Footer, Links, Navbar } from './components';
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -16,6 +16,9 @@ const App = () => {
 				onResetToggle={resetToggle}
 				onSetResetToggle={setResetToggle}
 			/>
+			<Footer>
+				<Links />
+			</Footer>
 		</QueryClientProvider>
 	);
 };
