@@ -85,7 +85,6 @@ const BestSeller = ({
 					Load More
 				</button>
 			)}
-			<Divider size="md" />
 		</div>
 	);
 };
