@@ -1,7 +1,7 @@
 import './ProductDetails.css';
 import Divider from '../Divider';
-import Counter from './InputCounter';
-import type { Product } from '../type';
+import InputCounter from './InputCounter';
+import type { Product } from '../../type';
 
 type ProductDetailProps = {
 	item: Product | undefined;
@@ -26,7 +26,7 @@ const ProductDetails = ({ item }: ProductDetailProps) => {
 								{item.description}
 							</div>
 							<Divider lineColor="lightGray" />
-							<Counter />
+							<InputCounter productDetails={item} />
 						</div>
 					</>
 				)}
