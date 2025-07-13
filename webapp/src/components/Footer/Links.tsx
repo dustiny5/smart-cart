@@ -43,8 +43,8 @@ const Links = () => {
 	return (
 		<div className="links text-color">
 			{LINKS.map((linkGroup) => (
-				<div className="links-list">
-					<h4 key={linkGroup.title}>{linkGroup.title}</h4>
+				<div key={linkGroup.title} className="links-list">
+					<h4>{linkGroup.title}</h4>
 					{linkGroup.links.map((link) => (
 						<button className="secondary-text" key={link.name}>
 							{link.name}
