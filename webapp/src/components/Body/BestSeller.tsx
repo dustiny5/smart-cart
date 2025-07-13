@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import Divider from '../Divider';
 import './BestSeller.css';
-import type { Product } from '../type';
+import type { Product } from '../../type';
 
 const DEFAULT_SIZE = 3;
 

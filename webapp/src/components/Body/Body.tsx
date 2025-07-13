@@ -2,7 +2,7 @@ import { useState } from 'react';
 import BestSeller from './BestSeller';
 import Carousel from './Carousel';
 import ProductDetails from './ProductDetails';
-import type { Product } from '../type';
+import type { Product } from '../../type';
 
 type BodyProps = {
 	onResetToggle: boolean;
