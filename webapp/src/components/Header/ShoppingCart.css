@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+.shopping-cart {
+	@apply flex items-start space-x-0.5;
+}
+.shopping-cart-quantity {
+	@apply text-sm;
+}
