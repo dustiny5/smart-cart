@@ -1,40 +1,69 @@
 import { useState } from 'react';
 import './InputCounter.css';
+import { useShoppingCart } from '../ShoppingCartProvider';
+import type { Product } from '../../type';
+import { DEFAULT_MAX, DEFAULT_MIN } from '../../constants';
 
-const DEFAULT_MIN = 0;
-const DEFAULT_MAX = 99;
+type InputCounterProps = {
+	productDetails: Product;
+};
 
-const InputCounter = () => {
-	const [count, setCount] = useState('');
+const InputCounter = ({ productDetails }: InputCounterProps) => {
+	const {
+		findCartItem,
+		setCartItemQuantity,
+		addCartItems,
+		subtractCartItems,
+	} = useShoppingCart();
+
+	const initialCartItem = { ...productDetails, quantity: 0 };
+
+	let currentCartItem = findCartItem(productDetails.id) ?? initialCartItem;
+
+	const [count, setCount] = useState(`${currentCartItem.quantity}`);
 
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let inputValue = e.target.value;
 
 		if (inputValue === '') {
+			setCartItemQuantity(initialCartItem);
 			setCount('');
 			return;
 		}
 
 		const num = Number(inputValue);
 
-		if (num < DEFAULT_MIN) setCount(String(DEFAULT_MIN));
-		else if (num > DEFAULT_MAX) setCount(String(DEFAULT_MAX));
-		else setCount(inputValue);
+		currentCartItem = {
+			...currentCartItem,
+			quantity: num,
+		};
+
+		if (num >= DEFAULT_MIN && num <= DEFAULT_MAX) {
+			setCount(inputValue);
+			setCartItemQuantity({ ...currentCartItem, quantity: num });
+		}
 	};
 
 	const handleClickMinus = () => {
-		setCount((prev) => {
-			if (prev === String(DEFAULT_MIN) || prev === '')
-				return String(DEFAULT_MIN);
-			return String(Number(prev) - 1);
-		});
+		if (Number(count) !== DEFAULT_MIN) {
+			setCount((prev) => {
+				return String(Number(prev) - 1);
+			});
+			subtractCartItems(productDetails.id);
+		}
 	};
 
 	const handleClickPlus = () => {
-		setCount((prev) => {
-			if (prev === String(DEFAULT_MAX)) return prev;
-			return String(Number(prev) + 1);
-		});
+		if (Number(count) !== DEFAULT_MAX) {
+			setCount((prev) => {
+				currentCartItem = {
+					...currentCartItem,
+					quantity: Number(prev) + 1,
+				};
+				return String(Number(prev) + 1);
+			});
+			addCartItems(currentCartItem);
+		}
 	};
 
 	return (
@@ -44,10 +73,17 @@ const InputCounter = () => {
 			</button>
 			{/* disable spinner: the style is located in index.html */}
 			<input
+				min={DEFAULT_MIN}
+				max={DEFAULT_MAX}
 				className="no-spinner"
 				type="number"
 				value={count}
 				onInput={handleInput}
+				onKeyDown={(e) => {
+					if (e.key === '-') {
+						e.preventDefault();
+					}
+				}}
 			/>
 			<button className="primary-text px-2" onClick={handleClickPlus}>
 				+
