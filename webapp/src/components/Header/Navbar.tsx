@@ -1,5 +1,6 @@
+import { Modal } from '../Reusable';
+import DropDown from './DropDown';
 import './Navbar.css';
-import Shop from './Shop';
 import ShoppingCart from './ShoppingCart';
 
 type NavbarProps = {
@@ -15,7 +16,27 @@ const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
 				<div className="navbar-menu">
 					<ul className="navbar-side secondary-text font-bold">
 						<button onClick={onHandleHomeClick}>Home</button>
-						<Shop />
+						<Modal
+							name="Shop"
+							svg={
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									strokeWidth={1.5}
+									stroke="currentColor"
+									className="size-4"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="m19.5 8.25-7.5 7.5-7.5-7.5"
+									/>
+								</svg>
+							}
+						>
+							<DropDown />
+						</Modal>
 
 						<button>About</button>
 						<button>Blog</button>

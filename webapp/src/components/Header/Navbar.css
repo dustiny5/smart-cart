@@ -6,14 +6,9 @@
 .navbar-brand {
 	@apply pr-8 text-2xl font-bold;
 }
-
 .navbar-side {
 	@apply flex space-x-6 text-lg;
 }
-.navbar-side-shop {
-	@apply flex space-x-2 items-center;
-}
-
 .navbar-menu {
 	@apply flex flex-auto items-center justify-between bg-white text-[#3C403D];
 }
