@@ -1,4 +1,4 @@
-import { useHidden } from '../Header/useHidden';
+import { useHidden } from './useHidden';
 import type { ReactNode, RefObject } from 'react';
 
 type ModalWrapper = {
