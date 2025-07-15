@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import Divider from '../Divider';
+import Divider from '../Reusable/Divider';
 import './Footer.css';
 
 type FooterProps = {

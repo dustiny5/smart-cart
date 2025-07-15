@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './InputCounter.css';
-import { useShoppingCart } from '../ShoppingCartProvider';
-import type { Product } from '../../type';
-import { DEFAULT_MAX, DEFAULT_MIN } from '../../constants';
+import { useShoppingCart } from '../Reusable/ShoppingCartProvider';
+import type { Product } from '../type';
+import { DEFAULT_MAX, DEFAULT_MIN } from '../constants';
 
 type InputCounterProps = {
 	productDetails: Product;

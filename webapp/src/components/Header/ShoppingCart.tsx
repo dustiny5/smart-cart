@@ -1,5 +1,5 @@
 import './ShoppingCart.css';
-import { useShoppingCart } from '../ShoppingCartProvider';
+import { useShoppingCart } from '../Reusable/ShoppingCartProvider';
 
 const ShoppingCart = () => {
 	/*

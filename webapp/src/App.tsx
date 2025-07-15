@@ -1,8 +1,13 @@
-import { Body, Footer, Links, Navbar } from './components';
+import {
+	Body,
+	Footer,
+	Links,
+	Navbar,
+	ShoppingCartProvider,
+} from './components';
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
-import { ShoppingCartProvider } from './components/ShoppingCartProvider';
 
 const queryClient = new QueryClient();
 
