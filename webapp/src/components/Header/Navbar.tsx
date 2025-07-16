@@ -1,12 +1,22 @@
 import { Modal } from '../Reusable';
+import type { Product } from '../type';
+import Checkout from './Checkout';
 import DropDown from './DropDown';
 import './Navbar.css';
 import ShoppingCart from './ShoppingCart';
 
 type NavbarProps = {
+	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
+	onSetShowProductDetails: React.Dispatch<
+		React.SetStateAction<Product | undefined>
+	>;
 	onHandleHomeClick: () => void;
 };
-const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
+const Navbar = ({
+	onSetResetToggle,
+	onHandleHomeClick,
+	onSetShowProductDetails,
+}: NavbarProps) => {
 	return (
 		<header className="header">
 			<nav className="navbar">
@@ -18,7 +28,8 @@ const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
 						<button onClick={onHandleHomeClick}>Home</button>
 						<Modal
 							name="Shop"
-							svg={
+							className="navbar-dropdown"
+							component={
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									fill="none"
@@ -35,7 +46,12 @@ const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
 								</svg>
 							}
 						>
-							<DropDown />
+							<DropDown
+								onSetResetToggle={onSetResetToggle}
+								onSetShowProductDetails={
+									onSetShowProductDetails
+								}
+							/>
 						</Modal>
 
 						<button>About</button>
@@ -75,7 +91,13 @@ const Navbar = ({ onHandleHomeClick }: NavbarProps) => {
 								/>
 							</svg>
 						</button>
-						<ShoppingCart />
+						<Modal
+							component={<ShoppingCart />}
+							className="navbar-dropdown navbar-checkout"
+						>
+							<Checkout />
+						</Modal>
+
 						<button>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"

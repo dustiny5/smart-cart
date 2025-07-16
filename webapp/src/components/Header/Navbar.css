@@ -15,3 +15,9 @@
 .navbar-side-login-register {
 	@apply flex font-semibold;
 }
+.navbar-dropdown {
+	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
+}
+.navbar-checkout {
+	@apply fixed left-[25%] right-[25%] top-[10%];
+}
