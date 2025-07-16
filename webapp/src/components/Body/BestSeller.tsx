@@ -79,7 +79,7 @@ const BestSeller = ({
 			{hasNextPage && (
 				<>
 					<button
-						className="best-seller-load-more-btn primary-text"
+						className="secondary-btn primary-text"
 						onClick={() => fetchNextPage()}
 						disabled={isFetchingNextPage}
 					>

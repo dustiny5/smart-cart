@@ -34,3 +34,9 @@
 .text-color {
 	@apply text-[#252B42];
 }
+.primary-btn {
+	@apply border-2 rounded-lg px-2 py-1 font-semibold text-white bg-[#23A6F0] hover:bg-[#2A7CC7];
+}
+.secondary-btn {
+	@apply border-2 rounded-lg px-2 py-1 font-semibold hover:text-[#2A7CC7];
+}
