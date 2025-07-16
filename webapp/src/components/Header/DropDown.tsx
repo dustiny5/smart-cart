@@ -2,7 +2,16 @@ import './DropDown.css';
 import { useQuery } from '@tanstack/react-query';
 import type { Category, Product } from '../type';
 
-const DropDown = () => {
+type DropDownProps = {
+	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
+	onSetShowProductDetails: React.Dispatch<
+		React.SetStateAction<Product | undefined>
+	>;
+};
+const DropDown = ({
+	onSetShowProductDetails,
+	onSetResetToggle,
+}: DropDownProps) => {
 	// https://tanstack.com/query/latest/docs/framework/react/examples/simple
 	const { isPending, isSuccess, data, error } = useQuery({
 		queryKey: ['dropdownData'],
@@ -14,7 +23,6 @@ const DropDown = () => {
 		},
 		staleTime: Infinity,
 	});
-
 	return (
 		<>
 			{isPending && <div>Loading...</div>}
@@ -28,6 +36,10 @@ const DropDown = () => {
 								<button
 									key={product.id}
 									className="dropdown-item secondary-text"
+									onClick={() => {
+										onSetShowProductDetails(product);
+										onSetResetToggle((prev) => !prev);
+									}}
 								>
 									{product.name}
 								</button>
