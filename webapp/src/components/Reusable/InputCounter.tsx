@@ -47,6 +47,10 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 
 	const handleClickPlus = () => {
 		if (Number(currentCartItem.quantity) !== DEFAULT_MAX) {
+			currentCartItem = {
+				...currentCartItem,
+				quantity: currentCartItem.quantity + 1,
+			};
 			addCartItems(currentCartItem);
 		}
 	};
@@ -60,7 +64,7 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 			<input
 				min={DEFAULT_MIN}
 				max={DEFAULT_MAX}
-				className="no-spinner"
+				className="no-spinner text-color"
 				type="number"
 				value={currentCartItem.quantity}
 				onInput={handleInput}
