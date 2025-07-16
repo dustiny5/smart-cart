@@ -7,9 +7,9 @@ const Divider = ({ size = 'none', lineColor }: DividerProps) => {
 	// https://tailwindcss.com/docs/detecting-classes-in-source-files#dynamic-class-names
 	const sizeVariants = {
 		none: 'mt-0',
-		sm: 'mt-10',
-		md: 'mt-25',
-		lg: 'mt-50',
+		sm: 'mt-5 mb-5',
+		md: 'mt-12.5 mb-12.5',
+		lg: 'mt-25 mb-25',
 	};
 
 	const lineVariants = {
