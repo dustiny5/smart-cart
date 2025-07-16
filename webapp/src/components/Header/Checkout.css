@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.checkout {
+	@apply flex flex-col items-start justify-between;
+}
+.checkout img {
+	@apply aspect-square w-[10%] rounded-md;
+}
+.checkout-product {
+	@apply flex items-start justify-between;
+}
+.checkout-details-info {
+	@apply w-[60%];
+}
+.checkout-total {
+	@apply flex flex-row justify-between text-base;
+}
+.checkout-buttons {
+	@apply flex justify-end space-x-4;
+}
