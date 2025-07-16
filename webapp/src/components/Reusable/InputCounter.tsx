@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import './InputCounter.css';
-import { useShoppingCart } from '../ShoppingCartProvider';
-import type { Product } from '../../type';
-import { DEFAULT_MAX, DEFAULT_MIN } from '../../constants';
+import { useShoppingCart } from './ShoppingCartProvider';
+import type { Product } from '../type';
+import { DEFAULT_MAX, DEFAULT_MIN } from '../constants';
 
 type InputCounterProps = {
 	productDetails: Product;
@@ -20,14 +19,11 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 
 	let currentCartItem = findCartItem(productDetails.id) ?? initialCartItem;
 
-	const [count, setCount] = useState(`${currentCartItem.quantity}`);
-
 	const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let inputValue = e.target.value;
 
 		if (inputValue === '') {
 			setCartItemQuantity(initialCartItem);
-			setCount('');
 			return;
 		}
 
@@ -39,29 +35,22 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 		};
 
 		if (num >= DEFAULT_MIN && num <= DEFAULT_MAX) {
-			setCount(inputValue);
 			setCartItemQuantity({ ...currentCartItem, quantity: num });
 		}
 	};
 
 	const handleClickMinus = () => {
-		if (Number(count) !== DEFAULT_MIN) {
-			setCount((prev) => {
-				return String(Number(prev) - 1);
-			});
+		if (Number(currentCartItem.quantity) !== DEFAULT_MIN) {
 			subtractCartItems(productDetails.id);
 		}
 	};
 
 	const handleClickPlus = () => {
-		if (Number(count) !== DEFAULT_MAX) {
-			setCount((prev) => {
-				currentCartItem = {
-					...currentCartItem,
-					quantity: Number(prev) + 1,
-				};
-				return String(Number(prev) + 1);
-			});
+		if (Number(currentCartItem.quantity) !== DEFAULT_MAX) {
+			currentCartItem = {
+				...currentCartItem,
+				quantity: currentCartItem.quantity + 1,
+			};
 			addCartItems(currentCartItem);
 		}
 	};
@@ -75,9 +64,9 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 			<input
 				min={DEFAULT_MIN}
 				max={DEFAULT_MAX}
-				className="no-spinner"
+				className="no-spinner text-color"
 				type="number"
-				value={count}
+				value={currentCartItem.quantity}
 				onInput={handleInput}
 				onKeyDown={(e) => {
 					if (e.key === '-') {

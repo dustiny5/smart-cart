@@ -1,20 +1,17 @@
 import './DropDown.css';
 import { useQuery } from '@tanstack/react-query';
-import { useHidden } from './useHidden';
-import type { RefObject } from 'react';
+import type { Category, Product } from '../type';
 
 type DropDownProps = {
-	onRefDropDown: RefObject<HTMLDivElement | null>;
-	onRefBtn: RefObject<HTMLButtonElement | null>;
-	onSetIsHidden: React.Dispatch<React.SetStateAction<boolean>>;
+	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
+	onSetShowProductDetails: React.Dispatch<
+		React.SetStateAction<Product | undefined>
+	>;
 };
-
 const DropDown = ({
-	onRefDropDown,
-	onRefBtn,
-	onSetIsHidden,
+	onSetShowProductDetails,
+	onSetResetToggle,
 }: DropDownProps) => {
-	useHidden(onRefDropDown, onRefBtn, () => onSetIsHidden(true));
 	// https://tanstack.com/query/latest/docs/framework/react/examples/simple
 	const { isPending, isSuccess, data, error } = useQuery({
 		queryKey: ['dropdownData'],
@@ -26,20 +23,23 @@ const DropDown = ({
 		},
 		staleTime: Infinity,
 	});
-
 	return (
-		<div className="dropdown" ref={onRefDropDown}>
+		<>
 			{isPending && <div>Loading...</div>}
 			{error && <div>An error has occured. Please try again...</div>}
 			<div className="dropdown-container">
 				{isSuccess &&
-					data.map((item: any) => (
+					data.map((item: Category) => (
 						<div key={item.id} className="dropdown-content">
 							<h4 className="text-color">{item.name}</h4>
-							{item.products.map((product: any) => (
+							{item.products.map((product: Product) => (
 								<button
 									key={product.id}
 									className="dropdown-item secondary-text"
+									onClick={() => {
+										onSetShowProductDetails(product);
+										onSetResetToggle((prev) => !prev);
+									}}
 								>
 									{product.name}
 								</button>
@@ -47,7 +47,7 @@ const DropDown = ({
 						</div>
 					))}
 			</div>
-		</div>
+		</>
 	);
 };
 

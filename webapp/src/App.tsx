@@ -1,20 +1,33 @@
-import { Body, Footer, Links, Navbar } from './components';
+import {
+	Body,
+	Footer,
+	Links,
+	Navbar,
+	ShoppingCartProvider,
+} from './components';
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
-import { ShoppingCartProvider } from './components/ShoppingCartProvider';
+import type { Product } from './components/type';
 
 const queryClient = new QueryClient();
 
 const App = () => {
 	const [resetToggle, setResetToggle] = useState(false);
 	const handleHomeClick = () => setResetToggle(false);
+	const [showProductDetails, setShowProductDetails] = useState<Product>();
 
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ShoppingCartProvider>
-				<Navbar onHandleHomeClick={handleHomeClick} />
+				<Navbar
+					onSetResetToggle={setResetToggle}
+					onSetShowProductDetails={setShowProductDetails}
+					onHandleHomeClick={handleHomeClick}
+				/>
 				<Body
+					onShowProductDetails={showProductDetails}
+					onSetShowProductDetails={setShowProductDetails}
 					onResetToggle={resetToggle}
 					onSetResetToggle={setResetToggle}
 				/>

@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import Divider from '../Divider';
+import Divider from '../Reusable/Divider';
 import './BestSeller.css';
-import type { Product } from '../../type';
+import type { Product } from '../type';
 
 const DEFAULT_SIZE = 3;
 
@@ -79,7 +79,7 @@ const BestSeller = ({
 			{hasNextPage && (
 				<>
 					<button
-						className="best-seller-load-more-btn primary-text"
+						className="secondary-btn primary-text"
 						onClick={() => fetchNextPage()}
 						disabled={isFetchingNextPage}
 					>

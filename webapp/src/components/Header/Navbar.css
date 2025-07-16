@@ -6,17 +6,18 @@
 .navbar-brand {
 	@apply pr-8 text-2xl font-bold;
 }
-
 .navbar-side {
 	@apply flex space-x-6 text-lg;
 }
-.navbar-side-shop {
-	@apply flex space-x-2 items-center;
-}
-
 .navbar-menu {
 	@apply flex flex-auto items-center justify-between bg-white text-[#3C403D];
 }
 .navbar-side-login-register {
 	@apply flex font-semibold;
+}
+.navbar-dropdown {
+	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
+}
+.navbar-checkout {
+	@apply fixed left-[25%] right-[25%] top-[10%];
 }
