@@ -2,11 +2,12 @@ import { useRef, useState, type ReactNode } from 'react';
 import ModalWrapper from './ModalWrapper';
 
 type ModalProps = {
-	name: string;
-	svg?: ReactNode;
+	name?: string;
+	component?: ReactNode;
 	children: ReactNode;
+	className?: string;
 };
-const Modal = ({ name, children, svg }: ModalProps) => {
+const Modal = ({ name, children, component, className }: ModalProps) => {
 	const [isHidden, setIsHidden] = useState(true);
 	const refDropDown = useRef<HTMLDivElement>(null);
 	const refBtn = useRef<HTMLButtonElement>(null);
@@ -21,13 +22,14 @@ const Modal = ({ name, children, svg }: ModalProps) => {
 				}}
 			>
 				<div>{name}</div>
-				{svg}
+				{component}
 			</button>
 			{!isHidden && (
 				<ModalWrapper
 					onRefDropDown={refDropDown}
 					onRefBtn={refBtn}
 					onSetIsHidden={setIsHidden}
+					className={className}
 				>
 					{children}
 				</ModalWrapper>
