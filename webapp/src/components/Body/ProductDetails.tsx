@@ -1,7 +1,6 @@
 import './ProductDetails.css';
-import Divider from '../Reusable/Divider';
-import InputCounter from './InputCounter';
 import type { Product } from '../type';
+import { Divider, InputCounter } from '../Reusable';
 
 type ProductDetailProps = {
 	item: Product | undefined;
