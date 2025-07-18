@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 
 .product-details {
-	@apply flex items-center justify-center gap-x-16;
+	@apply flex max-[500px]:flex-col max-[500px]:items-start items-center justify-center gap-8 mx-[8%];
 }
 .product-details img {
-	@apply aspect-square max-w-lg rounded-xl;
+	@apply aspect-2/3 max-sm:max-w-3xs max-lg:max-w-2xs lg:max-w-xs rounded-xl;
 }
 .product-details-info {
 	@apply flex flex-col items-start gap-y-4;
@@ -17,16 +17,4 @@
 }
 .product-details-description {
 	@apply font-medium;
-}
-.product-details-counter input {
-	@apply border-2 border-[#23A6F0] rounded-lg w-9 text-right pr-2 mx-2;
-}
-.product-details-counter input:focus {
-	@apply outline-[#23A6F0] border-3;
-}
-.product-details-counter button {
-	@apply border-2 border-[#23A6F0] rounded-4xl;
-}
-.product-details-counter button:hover {
-	@apply border-3 font-bold;
 }
