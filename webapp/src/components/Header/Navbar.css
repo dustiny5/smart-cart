@@ -7,13 +7,16 @@
 	@apply pr-8 text-2xl font-bold;
 }
 .navbar-side {
-	@apply flex space-x-6 text-lg;
+	@apply flex items-center lg:items-start space-x-6 text-lg;
+}
+.navbar-side-left {
+	@apply hidden md:flex space-x-6 text-lg;
 }
 .navbar-menu {
-	@apply flex flex-auto items-center justify-between bg-white text-[#3C403D];
+	@apply flex flex-auto items-center justify-end md:justify-between bg-white text-[#3C403D];
 }
 .navbar-side-login-register {
-	@apply flex font-semibold;
+	@apply hidden md:flex font-semibold;
 }
 .navbar-dropdown {
 	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
