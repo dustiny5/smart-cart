@@ -97,7 +97,7 @@ const Navbar = ({
 						>
 							<Checkout />
 						</Modal>
-						<button className="md:hidden">
+						<button className="navbar-hamburger">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -113,7 +113,7 @@ const Navbar = ({
 								/>
 							</svg>
 						</button>
-						<button className="hidden md:block">
+						<button className="navbar-favorite">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"

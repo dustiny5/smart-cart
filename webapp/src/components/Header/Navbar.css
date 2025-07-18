@@ -1,5 +1,7 @@
 @import 'tailwindcss';
-
+@theme {
+	--breakpoint-2md: 940px;
+}
 .navbar {
 	@apply flex m-4;
 }
@@ -10,17 +12,23 @@
 	@apply flex items-center lg:items-start space-x-6 text-lg;
 }
 .navbar-side-left {
-	@apply hidden md:flex space-x-6 text-lg;
+	@apply hidden 2md:flex space-x-6 text-lg;
 }
 .navbar-menu {
-	@apply flex flex-auto items-center justify-end md:justify-between bg-white text-[#3C403D];
+	@apply flex flex-auto items-center justify-end 2md:justify-between bg-white text-[#3C403D];
 }
 .navbar-side-login-register {
-	@apply hidden md:flex font-semibold;
+	@apply hidden 2md:flex font-semibold;
 }
 .navbar-dropdown {
 	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
 }
 .navbar-checkout {
 	@apply fixed left-[25%] right-[25%] top-[10%];
+}
+.navbar-favorite {
+	@apply hidden 2md:block;
+}
+.navbar-hamburger {
+	@apply 2md:hidden;
 }
