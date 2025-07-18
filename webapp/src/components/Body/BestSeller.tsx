@@ -58,7 +58,7 @@ const BestSeller = ({
 				{isFetching && <div>Loading...</div>}
 				{error && <div>An error has occured. Please try again...</div>}
 				{data?.pages?.map((page, pageIndex) => (
-					<div className="best-seller-cards-row" key={pageIndex}>
+					<>
 						{page.content.map((item: Product) => (
 							<div className="best-seller-card" key={item.id}>
 								{/* Improvement: Find images of the same ratio */}
@@ -73,7 +73,7 @@ const BestSeller = ({
 								</button>
 							</div>
 						))}
-					</div>
+					</>
 				))}
 			</div>
 			{hasNextPage && (
