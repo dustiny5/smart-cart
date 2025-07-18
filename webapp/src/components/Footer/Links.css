@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .links {
-	@apply flex justify-between font-bold;
+	@apply flex flex-wrap justify-between font-bold space-y-4;
 }
 .links-list {
 	@apply flex flex-col items-start space-y-4;

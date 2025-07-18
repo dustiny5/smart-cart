@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .best-seller {
-	@apply text-center mx-25;
+	@apply text-center mx-[5%];
 }
 .best-seller h3 {
 	@apply text-[#252B42] font-bold;
