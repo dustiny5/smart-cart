@@ -13,7 +13,7 @@
 	@apply absolute top-1/2 left-2 text-white text-6xl text-shadow-md;
 }
 .carousel-items img {
-	@apply w-full;
+	@apply w-full max-lg:w-[20%] h-auto;
 }
 .carousel-slider {
 	@apply absolute bottom-3 w-full flex justify-center gap-2;

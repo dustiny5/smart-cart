@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .links {
-	@apply flex justify-between font-bold;
+	@apply flex flex-wrap justify-between font-bold space-y-4;
 }
 .links-list {
 	@apply flex flex-col items-start space-y-4;
@@ -16,7 +16,7 @@
 	@apply mb-4;
 }
 .links-email input {
-	@apply border-[#E5E5E5] border-1 p-4 rounded-l-sm;
+	@apply border-[#E5E5E5] border-1 p-4 rounded-l-sm max-[350px]:w-[60%] max-[350px]:p-2;
 }
 .links-email input:focus {
 	@apply outline-[#E5E5E5];

@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 .footer {
-	@apply px-48;
+	@apply mx-[10%];
 }
 .footer h3 {
 	@apply text-2xl font-bold;

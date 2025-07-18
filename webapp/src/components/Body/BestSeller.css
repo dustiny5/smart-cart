@@ -1,19 +1,19 @@
 @import 'tailwindcss';
 
 .best-seller {
-	@apply text-center mx-25;
+	@apply text-center mx-[5%];
 }
 .best-seller h3 {
 	@apply text-[#252B42] font-bold;
 }
-.best-seller-cards-row {
-	@apply grid grid-cols-3;
+.best-seller-cards {
+	@apply grid max-sm:grid-cols-1 max-md:grid-cols-2 md:grid-cols-3;
 }
 .best-seller-card {
 	@apply flex flex-col items-center;
 }
 .best-seller-card img {
-	@apply w-[65%] h-[65%];
+	@apply aspect-2/3 w-[65%] h-[65%] rounded-xl shadow-lg;
 }
 .best-seller-load-more-btn {
 	@apply border-2 rounded-lg p-2 font-semibold hover:text-[#2A7CC7];
