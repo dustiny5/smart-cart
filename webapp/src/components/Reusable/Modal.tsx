@@ -5,9 +5,8 @@ type ModalProps = {
 	name?: string;
 	component?: ReactNode;
 	children: ReactNode;
-	className?: string;
 };
-const Modal = ({ name, children, component, className }: ModalProps) => {
+const Modal = ({ name, children, component }: ModalProps) => {
 	const [isHidden, setIsHidden] = useState(true);
 	const refDropDown = useRef<HTMLDivElement>(null);
 	const refBtn = useRef<HTMLButtonElement>(null);
@@ -29,7 +28,6 @@ const Modal = ({ name, children, component, className }: ModalProps) => {
 					onRefDropDown={refDropDown}
 					onRefBtn={refBtn}
 					onSetIsHidden={setIsHidden}
-					className={className}
 				>
 					{children}
 				</ModalWrapper>

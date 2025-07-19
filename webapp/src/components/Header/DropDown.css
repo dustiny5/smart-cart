@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+.dropdown {
+	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-1;
+}
 .dropdown-container {
 	@apply flex space-x-6 ml-16;
 }

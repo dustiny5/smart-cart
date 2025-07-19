@@ -24,7 +24,7 @@ const DropDown = ({
 		staleTime: Infinity,
 	});
 	return (
-		<>
+		<div className="dropdown">
 			{isPending && <div>Loading...</div>}
 			{error && <div>An error has occured. Please try again...</div>}
 			<div className="dropdown-container">
@@ -47,7 +47,7 @@ const DropDown = ({
 						</div>
 					))}
 			</div>
-		</>
+		</div>
 	);
 };
 
