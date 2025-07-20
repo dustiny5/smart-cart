@@ -6,7 +6,6 @@ type ModalWrapper = {
 	onRefBtn: RefObject<HTMLButtonElement | null>;
 	onSetIsHidden: React.Dispatch<React.SetStateAction<boolean>>;
 	children: ReactNode;
-	className?: string;
 };
 
 const ModalWrapper = ({
@@ -14,14 +13,9 @@ const ModalWrapper = ({
 	onRefBtn,
 	onSetIsHidden,
 	children,
-	className,
 }: ModalWrapper) => {
 	useHidden(onRefDropDown, onRefBtn, () => onSetIsHidden(true));
-	return (
-		<div className={className} ref={onRefDropDown}>
-			{children}
-		</div>
-	);
+	return <div ref={onRefDropDown}>{children}</div>;
 };
 
 export default ModalWrapper;

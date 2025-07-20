@@ -18,8 +18,8 @@ const Checkout = () => {
 	}, []);
 
 	return (
-		<>
-			<div className="checkout">
+		<div className="checkout">
+			<div className="checkout-container">
 				{show &&
 					cartItems.map((cartItem) => {
 						return (
@@ -54,7 +54,7 @@ const Checkout = () => {
 			<div className="checkout-buttons">
 				<button className="primary-btn">Checkout</button>
 			</div>
-		</>
+		</div>
 	);
 };
 

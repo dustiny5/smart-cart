@@ -13,7 +13,7 @@ const Modal = ({ name, children, component, className }: ModalProps) => {
 	const refBtn = useRef<HTMLButtonElement>(null);
 
 	return (
-		<div>
+		<div className={className}>
 			<button
 				ref={refBtn}
 				className="flex space-x-2 items-center"
@@ -29,7 +29,6 @@ const Modal = ({ name, children, component, className }: ModalProps) => {
 					onRefDropDown={refDropDown}
 					onRefBtn={refBtn}
 					onSetIsHidden={setIsHidden}
-					className={className}
 				>
 					{children}
 				</ModalWrapper>
