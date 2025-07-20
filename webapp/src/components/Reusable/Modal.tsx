@@ -5,14 +5,15 @@ type ModalProps = {
 	name?: string;
 	component?: ReactNode;
 	children: ReactNode;
+	className?: string;
 };
-const Modal = ({ name, children, component }: ModalProps) => {
+const Modal = ({ name, children, component, className }: ModalProps) => {
 	const [isHidden, setIsHidden] = useState(true);
 	const refDropDown = useRef<HTMLDivElement>(null);
 	const refBtn = useRef<HTMLButtonElement>(null);
 
 	return (
-		<div>
+		<div className={className}>
 			<button
 				ref={refBtn}
 				className="flex space-x-2 items-center"
