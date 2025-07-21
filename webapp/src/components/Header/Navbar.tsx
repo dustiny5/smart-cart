@@ -6,29 +6,23 @@ import NavbarLeft from './NavbarLeft';
 import NavbarRight from './NavbarRight';
 
 export type NavbarProps = {
-	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
 	onSetShowProductDetails: React.Dispatch<
 		React.SetStateAction<Product | undefined>
 	>;
-	onHandleHomeClick: () => void;
 };
-const Navbar = ({
-	onSetResetToggle,
-	onHandleHomeClick,
-	onSetShowProductDetails,
-}: NavbarProps) => {
+const Navbar = ({ onSetShowProductDetails }: NavbarProps) => {
 	return (
 		<header className="header">
 			<nav className="navbar">
 				<h3 className="navbar-brand text-color">
-					<button onClick={onHandleHomeClick}>Smart Cart</button>
+					<button onClick={() => onSetShowProductDetails(undefined)}>
+						Smart Cart
+					</button>
 				</h3>
 				<div className="navbar-menu">
 					<NavbarLeft
 						className="navbar-left secondary-text"
 						isHamburgerMenu={false}
-						onSetResetToggle={onSetResetToggle}
-						onHandleHomeClick={onHandleHomeClick}
 						onSetShowProductDetails={onSetShowProductDetails}
 					/>
 					<NavbarRight
@@ -58,8 +52,6 @@ const Navbar = ({
 							<NavbarLeft
 								className="flex flex-col items-center justify-between gap-y-3 secondary-text"
 								isHamburgerMenu={true}
-								onSetResetToggle={onSetResetToggle}
-								onHandleHomeClick={onHandleHomeClick}
 								onSetShowProductDetails={
 									onSetShowProductDetails
 								}

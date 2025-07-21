@@ -2,20 +2,20 @@ import { useHidden } from './useHidden';
 import type { ReactNode, RefObject } from 'react';
 
 type ModalWrapper = {
-	onRefDropDown: RefObject<HTMLDivElement | null>;
-	onRefBtn: RefObject<HTMLButtonElement | null>;
+	refDropDown: RefObject<HTMLDivElement | null>;
+	refBtn: RefObject<HTMLButtonElement | null>;
 	onSetIsHidden: React.Dispatch<React.SetStateAction<boolean>>;
 	children: ReactNode;
 };
 
 const ModalWrapper = ({
-	onRefDropDown,
-	onRefBtn,
+	refDropDown,
+	refBtn,
 	onSetIsHidden,
 	children,
 }: ModalWrapper) => {
-	useHidden(onRefDropDown, onRefBtn, () => onSetIsHidden(true));
-	return <div ref={onRefDropDown}>{children}</div>;
+	useHidden(refDropDown, refBtn, () => onSetIsHidden(true));
+	return <div ref={refDropDown}>{children}</div>;
 };
 
 export default ModalWrapper;

@@ -26,8 +26,8 @@ const Modal = ({ name, children, component, className }: ModalProps) => {
 			</button>
 			{!isHidden && (
 				<ModalWrapper
-					onRefDropDown={refDropDown}
-					onRefBtn={refBtn}
+					refDropDown={refDropDown}
+					refBtn={refBtn}
 					onSetIsHidden={setIsHidden}
 				>
 					{children}

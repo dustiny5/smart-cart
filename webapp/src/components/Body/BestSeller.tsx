@@ -9,13 +9,9 @@ type BestSellerProps = {
 	onSetShowProductDetails: React.Dispatch<
 		React.SetStateAction<Product | undefined>
 	>;
-	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const BestSeller = ({
-	onSetShowProductDetails,
-	onSetResetToggle,
-}: BestSellerProps) => {
+const BestSeller = ({ onSetShowProductDetails }: BestSellerProps) => {
 	const {
 		data,
 		error,
@@ -40,11 +36,6 @@ const BestSeller = ({
 		staleTime: Infinity,
 	});
 
-	const handleClick = (item: Product) => {
-		onSetResetToggle(true);
-		onSetShowProductDetails(item);
-	};
-
 	return (
 		<div className="best-seller">
 			<Divider size="md" />
@@ -67,7 +58,11 @@ const BestSeller = ({
 									src={item.imageUrl}
 									alt={`${item.name}`}
 								/>
-								<button onClick={() => handleClick(item)}>
+								<button
+									onClick={() =>
+										onSetShowProductDetails(item)
+									}
+								>
 									<div>{item.name}</div>
 									<div>{`$${item.price}`}</div>
 								</button>

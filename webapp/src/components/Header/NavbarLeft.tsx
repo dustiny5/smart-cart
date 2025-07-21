@@ -11,13 +11,13 @@ export type NavbarSideProps = {
 const NavbarLeft = ({
 	className,
 	isHamburgerMenu,
-	onSetResetToggle,
-	onHandleHomeClick,
 	onSetShowProductDetails,
 }: NavbarProps & NavbarSideProps) => {
 	return (
 		<div className={className}>
-			<button onClick={onHandleHomeClick}>Home</button>
+			<button onClick={() => onSetShowProductDetails(undefined)}>
+				Home
+			</button>
 			<Modal
 				name="Shop"
 				component={
@@ -39,7 +39,6 @@ const NavbarLeft = ({
 			>
 				<DropDown
 					isHamburgerMenu={isHamburgerMenu}
-					onSetResetToggle={onSetResetToggle}
 					onSetShowProductDetails={onSetShowProductDetails}
 				/>
 			</Modal>
