@@ -4,29 +4,21 @@ import ProductDetails from './ProductDetails';
 import type { Product } from '../type';
 
 type BodyProps = {
-	onShowProductDetails: Product | undefined;
+	showProductDetails: Product | undefined;
 	onSetShowProductDetails: React.Dispatch<
 		React.SetStateAction<Product | undefined>
 	>;
-	onResetToggle: boolean;
-	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
-const Body = ({
-	onResetToggle,
-	onSetResetToggle,
-	onShowProductDetails,
-	onSetShowProductDetails,
-}: BodyProps) => {
+const Body = ({ showProductDetails, onSetShowProductDetails }: BodyProps) => {
 	return (
 		<>
-			{onResetToggle ? (
-				<ProductDetails item={onShowProductDetails} />
+			{showProductDetails ? (
+				<ProductDetails item={showProductDetails} />
 			) : (
 				<>
 					<Carousel />
 					<BestSeller
 						onSetShowProductDetails={onSetShowProductDetails}
-						onSetResetToggle={onSetResetToggle}
 					/>
 				</>
 			)}

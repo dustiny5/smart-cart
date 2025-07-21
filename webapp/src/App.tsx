@@ -13,23 +13,15 @@ import type { Product } from './components/type';
 const queryClient = new QueryClient();
 
 const App = () => {
-	const [resetToggle, setResetToggle] = useState(false);
-	const handleHomeClick = () => setResetToggle(false);
 	const [showProductDetails, setShowProductDetails] = useState<Product>();
 
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ShoppingCartProvider>
-				<Navbar
-					onSetResetToggle={setResetToggle}
-					onSetShowProductDetails={setShowProductDetails}
-					onHandleHomeClick={handleHomeClick}
-				/>
+				<Navbar onSetShowProductDetails={setShowProductDetails} />
 				<Body
-					onShowProductDetails={showProductDetails}
+					showProductDetails={showProductDetails}
 					onSetShowProductDetails={setShowProductDetails}
-					onResetToggle={resetToggle}
-					onSetResetToggle={setResetToggle}
 				/>
 			</ShoppingCartProvider>
 			<Footer>

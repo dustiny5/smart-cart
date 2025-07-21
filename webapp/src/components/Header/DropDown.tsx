@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import type { Category, Product } from '../type';
 
 type DropDownProps = {
-	onSetResetToggle: React.Dispatch<React.SetStateAction<boolean>>;
 	onSetShowProductDetails: React.Dispatch<
 		React.SetStateAction<Product | undefined>
 	>;
@@ -11,7 +10,6 @@ type DropDownProps = {
 };
 const DropDown = ({
 	onSetShowProductDetails,
-	onSetResetToggle,
 	isHamburgerMenu,
 }: DropDownProps) => {
 	// https://tanstack.com/query/latest/docs/framework/react/examples/simple
@@ -48,7 +46,6 @@ const DropDown = ({
 									className="dropdown-item secondary-text"
 									onClick={() => {
 										onSetShowProductDetails(product);
-										onSetResetToggle((prev) => !prev);
 									}}
 								>
 									{product.name}
