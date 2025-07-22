@@ -57,7 +57,10 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 
 	return (
 		<div className="input-counter">
-			<button className="primary-text px-2.5" onClick={handleClickMinus}>
+			<button
+				className="primary-text px-2.5 max-md:px-1.6"
+				onClick={handleClickMinus}
+			>
 				-
 			</button>
 			{/* disable spinner: the style is located in index.html */}
@@ -74,7 +77,10 @@ const InputCounter = ({ productDetails }: InputCounterProps) => {
 					}
 				}}
 			/>
-			<button className="primary-text px-2" onClick={handleClickPlus}>
+			<button
+				className="primary-text px-2 max-md:px-1.2"
+				onClick={handleClickPlus}
+			>
 				+
 			</button>
 		</div>

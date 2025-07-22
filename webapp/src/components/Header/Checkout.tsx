@@ -1,6 +1,7 @@
 import './Checkout.css';
 import { Divider, InputCounter, useShoppingCart } from '../Reusable';
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const Checkout = () => {
 	const {
@@ -17,35 +18,36 @@ const Checkout = () => {
 		return () => clearTimeout(showCheckoutTimer);
 	}, []);
 
-	return (
+	const portalRoot = document.getElementById('root');
+	if (!portalRoot) return null;
+
+	return createPortal(
 		<div className="checkout">
-			<div className="checkout-container">
-				{show &&
-					cartItems.map((cartItem) => {
-						return (
-							<div key={cartItem.id}>
-								<div className="checkout-product">
-									<img
-										key={cartItem.id}
-										src={cartItem.imageUrl}
-										alt={cartItem.name}
-									/>
-									<div className="checkout-details-info">
-										<h4 className="text-color">
-											{cartItem.name}
-										</h4>
-										<h3 className="text-color">{`$${cartItem.price}`}</h3>
-										<div className="secondary-text">
-											{cartItem.description}
-										</div>
+			{show &&
+				cartItems.map((cartItem) => {
+					return (
+						<div className="checkout-container" key={cartItem.id}>
+							<div className="checkout-product">
+								<img
+									key={cartItem.id}
+									src={cartItem.imageUrl}
+									alt={cartItem.name}
+								/>
+								<div className="checkout-details-info">
+									<h4 className="text-color">
+										{cartItem.name}
+									</h4>
+									<h3 className="text-color">{`$${cartItem.price}`}</h3>
+									<div className="secondary-text">
+										{cartItem.description}
 									</div>
-									<InputCounter productDetails={cartItem} />
 								</div>
-								<Divider size="sm" lineColor="lightGray" />
+								<InputCounter productDetails={cartItem} />
 							</div>
-						);
-					})}
-			</div>
+							<Divider size="sm" lineColor="lightGray" />
+						</div>
+					);
+				})}
 			<div className="checkout-total text-color">
 				<div>Total</div>
 				<div>{`$${price.toFixed(2)}`}</div>
@@ -54,7 +56,8 @@ const Checkout = () => {
 			<div className="checkout-buttons">
 				<button className="primary-btn">Checkout</button>
 			</div>
-		</div>
+		</div>,
+		portalRoot
 	);
 };
 

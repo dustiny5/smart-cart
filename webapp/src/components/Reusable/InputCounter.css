@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
+.input-counter {
+	@apply max-md:text-sm;
+}
 .input-counter input {
-	@apply border-2 border-[#23A6F0] rounded-lg w-10 text-right pr-2 mx-3;
+	@apply border-2 border-[#23A6F0] rounded-lg w-10 text-right pr-2 mx-3 max-md:pr-1;
 }
 .input-counter input:focus {
 	@apply outline-[#23A6F0] border-3;

@@ -1,6 +1,7 @@
 import './DropDown.css';
 import { useQuery } from '@tanstack/react-query';
 import type { Category, Product } from '../type';
+import { createPortal } from 'react-dom';
 
 type DropDownProps = {
 	onSetShowProductDetails: React.Dispatch<
@@ -24,12 +25,36 @@ const DropDown = ({
 		staleTime: Infinity,
 	});
 
+	const CategoryProducts = () => {
+		return data.map((item: Category) => (
+			<div key={item.id} className="dropdown-content">
+				<h4 className="text-color">{item.name}</h4>
+				{item.products.map((product: Product) => (
+					<button
+						key={product.id}
+						className="dropdown-item secondary-text"
+						onClick={() => {
+							onSetShowProductDetails(product);
+						}}
+					>
+						{product.name}
+					</button>
+				))}
+			</div>
+		));
+	};
+
 	const hamburgerMenuSytle = {
-		dropdown: isHamburgerMenu && 'w-[100%] left-0',
+		dropdown: isHamburgerMenu
+			? 'max-w-[50%] top-20 right-40 max-xs:right-30'
+			: 'top-11 left-61',
 		dropdownContainer: isHamburgerMenu ? 'ml-0 flex-wrap' : 'ml-16',
 	};
 
-	return (
+	const portalRoot = document.getElementById('root');
+	if (!portalRoot) return null;
+
+	return createPortal(
 		<div className={`dropdown ${hamburgerMenuSytle.dropdown}`}>
 			{isPending && <div>Loading...</div>}
 			{error && <div>An error has occured. Please try again...</div>}
@@ -54,7 +79,8 @@ const DropDown = ({
 						</div>
 					))}
 			</div>
-		</div>
+		</div>,
+		portalRoot
 	);
 };
 
