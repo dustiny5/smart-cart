@@ -16,3 +16,8 @@ npm run dev
 ## Assets
 
 -   [Heroicons](https://heroicons.com/)
+
+## Deploy
+
+-   Project name, `smart-cart-webapp`, and hosted on [Netlify](https://app.netlify.com/)
+-   Configure a `netlify.toml` and deployed the webapp
