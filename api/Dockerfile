@@ -4,6 +4,9 @@ FROM openjdk:17-alpine
 # Set working directory
 WORKDIR /app
 
+# Install mvn
+RUN apt-get update && apt-get install -y maven
+
 # Copy Maven/Gradle wrapper and build files
 COPY mvnw* pom.xml ./
 COPY .mvn .mvn
