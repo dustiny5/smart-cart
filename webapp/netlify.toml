@@ -1,7 +1,9 @@
 [build]
   base = "webapp"
   publish = "webapp/dist"
-  command = "npm run build"
+  command = "npm run build --workspace=webapp"
 
-[functions]
-  directory = "netlify/functions"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
