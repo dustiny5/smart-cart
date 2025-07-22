@@ -48,7 +48,7 @@ const BestSeller = ({ onSetShowProductDetails }: BestSellerProps) => {
 			<div className="best-seller-cards">
 				{isFetching && <div>Loading...</div>}
 				{error && <div>An error has occured. Please try again...</div>}
-				{data?.pages?.map((page, pageIndex) => (
+				{data?.pages?.map((page) => (
 					<>
 						{page.content.map((item: Product) => (
 							<div className="best-seller-card" key={item.id}>
