@@ -4,12 +4,12 @@ FROM openjdk:17-alpine
 # Set working directory
 WORKDIR /app
 
-# Install mvn
-RUN apt-get update && apt-get install -y maven
-
 # Copy Maven/Gradle wrapper and build files
 COPY mvnw* pom.xml ./
 COPY .mvn .mvn
+
+# Make Maven wrapper executable
+RUN chmod +x ./mvnw
 
 # Download dependencies (this layer will be cached if dependencies don't change)
 RUN ./mvnw dependency:go-offline -B
