@@ -25,25 +25,6 @@ const DropDown = ({
 		staleTime: Infinity,
 	});
 
-	const CategoryProducts = () => {
-		return data.map((item: Category) => (
-			<div key={item.id} className="dropdown-content">
-				<h4 className="text-color">{item.name}</h4>
-				{item.products.map((product: Product) => (
-					<button
-						key={product.id}
-						className="dropdown-item secondary-text"
-						onClick={() => {
-							onSetShowProductDetails(product);
-						}}
-					>
-						{product.name}
-					</button>
-				))}
-			</div>
-		));
-	};
-
 	const hamburgerMenuSytle = {
 		dropdown: isHamburgerMenu
 			? 'max-w-[50%] top-20 right-40 max-xs:right-30'
