@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+.dropdown {
+	@apply absolute font-normal shadow-md p-4 rounded-md bg-white z-20;
+}
+.dropdown-container {
+	@apply flex justify-center gap-x-6;
+}
+.dropdown-item {
+	@apply text-sm font-medium mb-1;
+}
+.dropdown-content {
+	@apply flex flex-col items-start font-bold;
+}
+.dropdown-content h4 {
+	@apply font-bold mb-3;
+}

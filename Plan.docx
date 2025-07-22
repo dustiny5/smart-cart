@@ -1,7 +1,7 @@
-SmartCart
+Smart Cart
 
 Tech Stack:
-- Webapp: React, Tailwind CSS
+- Webapp: React 19 Typescript, Tailwind CSS
 - API: Spring Boot, AI Model, PostgreSQL
 - Authentication: JWT, Spring Security
 
@@ -24,3 +24,5 @@ Post MVP:
     - Analytics: sale stats, top products
     - CRUD for products, categories, inventory
     - Manage discounts or sales
+- Mobile Version
+- AI Customer Support Chat Bot

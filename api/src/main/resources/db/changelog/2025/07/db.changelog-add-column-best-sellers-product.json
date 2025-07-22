@@ -1,0 +1,132 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-07-01-add-column-best-sellers-product",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "addColumn": {
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "type": "boolean",
+                    "defaultValue": false
+                  }
+                }
+              ],
+              "tableName": "product"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2025-07-01-update-is_best-seller-product-true",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Sunset Trucker Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Tonal Low-Profile Cap'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Urban Snap Curve'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Mono Minimal Tee'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Pop Graphic Punch Tee'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Heritage Vibe Tee'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "update": {
+              "tableName": "product",
+              "where": "name='Fusion Core Tee'",
+              "columns": [
+                {
+                  "column": {
+                    "name": "is_best_seller",
+                    "value": true
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

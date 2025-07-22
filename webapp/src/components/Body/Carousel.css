@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+.carousel {
+	@apply relative overflow-hidden;
+}
+.carousel-items {
+	@apply flex;
+}
+.carousel-next {
+	@apply absolute top-1/2 right-2 text-white text-6xl text-shadow-md;
+}
+.carousel-previous {
+	@apply absolute top-1/2 left-2 text-white text-6xl text-shadow-md;
+}
+.carousel-items img {
+	@apply w-full max-lg:w-[20%] h-auto;
+}
+.carousel-slider {
+	@apply absolute bottom-3 w-full flex justify-center gap-2;
+}
+.carousel-slider button {
+	@apply w-10 h-2 rounded-xs;
+}

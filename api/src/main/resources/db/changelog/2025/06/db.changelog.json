@@ -1,0 +1,29 @@
+{
+    "databaseChangeLog": [
+        {
+            "include": {
+                "file": "db/changelog/2025/06/db.changelog-init-tables.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/06/db.changelog-auto-increment-pk-modify-data-type.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/06/db.changelog-add-hats-add-products.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/06/db.changelog-add-shirts-add-products.json"
+            }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/06/db.changelog-update-hats-imageURL.json"
+            }
+        }
+    ]
+}

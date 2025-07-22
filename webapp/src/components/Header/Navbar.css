@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+@import '../../Theme.css';
+
+.navbar {
+	@apply flex m-4;
+}
+.navbar-brand {
+	@apply pr-8 text-2xl font-bold;
+}
+.navbar-side {
+	@apply flex items-center lg:items-start space-x-6 text-lg;
+}
+.navbar-left {
+	@apply hidden 2md:flex space-x-6 text-lg font-bold;
+}
+.navbar-menu {
+	@apply flex flex-auto items-center justify-end 2md:justify-between bg-white text-[#3C403D];
+}
+.navbar-side-login-register {
+	@apply hidden 2md:flex font-semibold;
+}
+.navbar-favorite {
+	@apply hidden 2md:block;
+}
+.navbar-hamburger {
+	@apply 2md:hidden;
+}

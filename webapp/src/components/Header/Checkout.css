@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.checkout {
+	@apply w-[90%] left-[5%] right-[5%] fixed top-[10%] font-normal shadow-md p-4 rounded-md bg-white z-20 max-h-[80%] overflow-y-auto;
+}
+.checkout img {
+	@apply aspect-square w-30 rounded-md;
+}
+.checkout-product {
+	@apply flex max-md:flex-col max-md:gap-4 items-start justify-between;
+}
+.checkout-details-info {
+	@apply w-[60%] max-md:text-sm;
+}
+.checkout-total {
+	@apply flex flex-row justify-between text-base;
+}
+.checkout-buttons {
+	@apply flex justify-end space-x-4;
+}

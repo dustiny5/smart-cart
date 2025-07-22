@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.product-details {
+	@apply flex max-[500px]:flex-col max-[500px]:items-start items-center justify-center gap-8 mx-[8%];
+}
+.product-details img {
+	@apply aspect-2/3 max-sm:max-w-3xs max-lg:max-w-2xs lg:max-w-xs rounded-xl;
+}
+.product-details-info {
+	@apply flex flex-col items-start gap-y-4;
+}
+.product-details-info h4 {
+	@apply font-semibold;
+}
+.product-details-info h3 {
+	@apply font-bold;
+}
+.product-details-description {
+	@apply font-medium;
+}

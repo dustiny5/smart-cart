@@ -1,0 +1,9 @@
+{
+    "databaseChangeLog": [
+        {
+            "include": {
+                "file": "db/changelog/2025/07/db.changelog-add-column-best-sellers-product.json"
+            }
+        }
+    ]
+}
