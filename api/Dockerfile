@@ -1,5 +1,5 @@
 # Use OpenJDK 17 as base image
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-alpine
 
 # Set working directory
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
 # Create a new stage for the runtime
-FROM openjdk:17-jre-slim
+FROM openjdk:17-alpine
 
 WORKDIR /app
 
