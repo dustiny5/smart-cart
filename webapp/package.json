@@ -1,6 +1,7 @@
 {
   "name": "webapp",
   "private": true,
+  "workspaces": ["webapp/*", "packages/*"],
   "version": "0.0.0",
   "type": "module",
   "scripts": {
