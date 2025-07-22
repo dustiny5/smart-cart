@@ -3,9 +3,6 @@
 .checkout {
 	@apply w-[90%] left-[5%] right-[5%] fixed top-[10%] font-normal shadow-md p-4 rounded-md bg-white z-20 max-h-[80%] overflow-y-auto;
 }
-.checkout-container {
-	@apply visible;
-}
 .checkout img {
 	@apply aspect-square w-30 rounded-md;
 }
