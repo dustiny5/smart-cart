@@ -22,7 +22,7 @@ To setup the environment variables for VSCode editor.
 			"args": "",
 			"cwd": "${workspaceFolder}/api",
 			"env": {
-				"DB_NAME": "<your_db_name>",
+				"DB_URL": "<your_db_url>",
 				"DB_USER": "<your_db_user>",
 				"DB_PASSWORD": "<your_db_password>"
 			}
@@ -34,3 +34,10 @@ To setup the environment variables for VSCode editor.
 If mappers are added/updated, then run `mvn clean compile` to update the target directory.
 
 For Intellij, use this [guide](https://www.baeldung.com/intellij-idea-environment-variables).
+
+## Deploy
+
+-   Project name, `smart-cart-api`, and hosted on [Render](https://render.com/).
+-   Configured a `Dockerfile` to deploy the **Spring API** .
+-   **Postgresql** is hosted on Render and manually configured using their UI.
+-   Point the database to this url: `postgresql://${HOSTNAME}:${PORT}$/${DATABASE}?currentSchema=${SCHEMA_NAME}`
