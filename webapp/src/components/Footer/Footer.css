@@ -13,7 +13,7 @@
 	@apply flex justify-between;
 }
 .footer-socials {
-	@apply flex space-x-3;
+	@apply flex items-center gap-x-3;
 }
 .footer p {
 	@apply font-bold mb-4;
