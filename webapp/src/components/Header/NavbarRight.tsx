@@ -10,7 +10,10 @@ const NavbarRight = ({ className, isHamburgerMenu }: NavbarSideProps) => {
 	};
 	return (
 		<div className={className}>
-			<button className={hamburgerMenuSytle.loginRegister}>
+			<button
+				disabled
+				className={`disable ${hamburgerMenuSytle.loginRegister}`}
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -27,7 +30,7 @@ const NavbarRight = ({ className, isHamburgerMenu }: NavbarSideProps) => {
 				</svg>
 				<div>Login / Register</div>
 			</button>
-			<button>
+			<button disabled className="disable">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
@@ -45,7 +48,10 @@ const NavbarRight = ({ className, isHamburgerMenu }: NavbarSideProps) => {
 				<Checkout />
 			</Modal>
 
-			<button className={hamburgerMenuSytle.favorite}>
+			<button
+				disabled
+				className={`disable ${hamburgerMenuSytle.favorite}`}
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
