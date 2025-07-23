@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Modal } from '../Reusable';
 import DropDown from './DropDown';
 import type { NavbarProps } from './Navbar';
@@ -13,12 +14,15 @@ const NavbarLeft = ({
 	isHamburgerMenu,
 	onSetShowProductDetails,
 }: NavbarProps & NavbarSideProps) => {
+	const [isHiddenDropDown, setIsHiddenDropDown] = useState(false);
+
 	return (
 		<div className={className}>
 			<button onClick={() => onSetShowProductDetails(undefined)}>
 				Home
 			</button>
 			<Modal
+				isHiddenChildren={isHiddenDropDown}
 				name="Shop"
 				component={
 					<svg
@@ -38,6 +42,7 @@ const NavbarLeft = ({
 				}
 			>
 				<DropDown
+					onSetIsHiddenDropDown={setIsHiddenDropDown}
 					isHamburgerMenu={isHamburgerMenu}
 					onSetShowProductDetails={onSetShowProductDetails}
 				/>
