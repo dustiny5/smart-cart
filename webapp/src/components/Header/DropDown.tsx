@@ -1,17 +1,18 @@
 import './DropDown.css';
 import { useQuery } from '@tanstack/react-query';
 import type { Category, Product } from '../type';
-import { createPortal } from 'react-dom';
 
 type DropDownProps = {
 	onSetShowProductDetails: React.Dispatch<
 		React.SetStateAction<Product | undefined>
 	>;
 	isHamburgerMenu: boolean;
+	onSetIsHiddenDropDown: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const DropDown = ({
 	onSetShowProductDetails,
 	isHamburgerMenu,
+	onSetIsHiddenDropDown,
 }: DropDownProps) => {
 	// https://tanstack.com/query/latest/docs/framework/react/examples/simple
 	const { isPending, isSuccess, data, error } = useQuery({
@@ -32,10 +33,7 @@ const DropDown = ({
 		dropdownContainer: isHamburgerMenu ? 'ml-0 flex-wrap' : 'ml-16',
 	};
 
-	const portalRoot = document.getElementById('root');
-	if (!portalRoot) return null;
-
-	return createPortal(
+	return (
 		<div className={`dropdown ${hamburgerMenuSytle.dropdown}`}>
 			{isPending && <div>Loading...</div>}
 			{error && <div>An error has occured. Please try again...</div>}
@@ -51,6 +49,7 @@ const DropDown = ({
 									key={product.id}
 									className="dropdown-item secondary-text"
 									onClick={() => {
+										onSetIsHiddenDropDown(true);
 										onSetShowProductDetails(product);
 									}}
 								>
@@ -60,8 +59,7 @@ const DropDown = ({
 						</div>
 					))}
 			</div>
-		</div>,
-		portalRoot
+		</div>
 	);
 };
 
