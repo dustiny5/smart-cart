@@ -1,7 +1,6 @@
 import './Checkout.css';
 import { Divider, InputCounter, useShoppingCart } from '../Reusable';
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 
 const Checkout = () => {
 	const {
@@ -18,10 +17,7 @@ const Checkout = () => {
 		return () => clearTimeout(showCheckoutTimer);
 	}, []);
 
-	const portalRoot = document.getElementById('root');
-	if (!portalRoot) return null;
-
-	return createPortal(
+	return (
 		<div className="checkout">
 			{show &&
 				cartItems.map((cartItem) => {
@@ -56,8 +52,7 @@ const Checkout = () => {
 			<div className="checkout-buttons">
 				<button className="primary-btn">Checkout</button>
 			</div>
-		</div>,
-		portalRoot
+		</div>
 	);
 };
 
