@@ -24,7 +24,7 @@ const ModalWrapper = ({
 	if (!portalRoot) return null;
 	/* 
 		Originally did not have the `isNormalClose` boolean. This was added
-		because we need to hide the HamburgerMenu when screen size increases.
+		because we need to close the HamburgerMenu when screen size increases.
 	*/
 	!isNormalClose && useHidden(refDropDown, refBtn, () => onSetIsHidden(true));
 	isNormalClose && useWindowSize() > SCREEN_WIDTH_2MD && onSetIsHidden(true);
@@ -36,12 +36,14 @@ const ModalWrapper = ({
 
 	return createPortal(
 		<div ref={refDropDown}>
-			<button
-				onClick={() => onSetIsHidden(true)}
-				className="fixed top-3 right-3 z-11 text-color"
-			>
-				X
-			</button>
+			{isNormalClose && (
+				<button
+					onClick={() => onSetIsHidden(true)}
+					className="fixed top-3 right-3 z-11 text-color"
+				>
+					X
+				</button>
+			)}
 			{children}
 		</div>,
 		portalRoot
