@@ -6,8 +6,18 @@ type ModalProps = {
 	component?: ReactNode;
 	children: ReactNode;
 	className?: string;
+	isNormalClose?: boolean;
+	isHiddenChildren?: boolean;
 };
-const Modal = ({ name, children, component, className }: ModalProps) => {
+
+const Modal = ({
+	name,
+	children,
+	component,
+	className,
+	isNormalClose = false,
+	isHiddenChildren = false,
+}: ModalProps) => {
 	const [isHidden, setIsHidden] = useState(true);
 	const refDropDown = useRef<HTMLDivElement>(null);
 	const refBtn = useRef<HTMLButtonElement>(null);
@@ -29,6 +39,8 @@ const Modal = ({ name, children, component, className }: ModalProps) => {
 					refDropDown={refDropDown}
 					refBtn={refBtn}
 					onSetIsHidden={setIsHidden}
+					isNormalClose={isNormalClose}
+					isHiddenChildren={isHiddenChildren}
 				>
 					{children}
 				</ModalWrapper>
