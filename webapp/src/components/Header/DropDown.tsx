@@ -1,6 +1,7 @@
 import './DropDown.css';
 import { useQuery } from '@tanstack/react-query';
 import type { Category, Product } from '../type';
+import { useEffect } from 'react';
 
 type DropDownProps = {
 	onSetShowProductDetails: React.Dispatch<
@@ -25,6 +26,8 @@ const DropDown = ({
 		},
 		staleTime: Infinity,
 	});
+
+	useEffect(() => () => onSetIsHiddenDropDown(false));
 
 	const hamburgerMenuSytle = {
 		dropdown: isHamburgerMenu
