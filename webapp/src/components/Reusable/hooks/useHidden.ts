@@ -1,6 +1,6 @@
 import { useEffect, type RefObject } from 'react';
 
-export const useHidden = (
+const useHidden = (
 	refParent: RefObject<HTMLElement | null>,
 	refChild: RefObject<HTMLElement | null>,
 	callback: () => void
@@ -22,3 +22,4 @@ export const useHidden = (
 		};
 	}, []);
 };
+export default useHidden;
