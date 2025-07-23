@@ -25,6 +25,9 @@ const ModalWrapper = ({
 	/* 
 		Originally did not have the `isNormalClose` boolean. This was added
 		because we need to close the HamburgerMenu when screen size increases.
+		If there's a nested modal then `useHidden` will only be used for 1 of the them.
+		A use case is for the dropdown, product links, clicking on a link will close
+		both modals instead of rendering the ProductDetails component.
 	*/
 	!isNormalClose && useHidden(refDropDown, refBtn, () => onSetIsHidden(true));
 	isNormalClose && useWindowSize() > SCREEN_WIDTH_2MD && onSetIsHidden(true);
