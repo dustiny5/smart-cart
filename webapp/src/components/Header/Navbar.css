@@ -8,7 +8,7 @@
 	@apply pr-8 text-2xl font-bold;
 }
 .navbar-side {
-	@apply flex items-center lg:items-start space-x-6 text-lg;
+	@apply flex items-center lg:items-start space-x-6 text-lg max-2md:hidden;
 }
 .navbar-left {
 	@apply hidden 2md:flex space-x-6 text-lg font-bold;
