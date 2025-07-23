@@ -48,10 +48,18 @@ const NavbarLeft = ({
 				/>
 			</Modal>
 
-			<button>About</button>
-			<button>Blog</button>
-			<button>Contact</button>
-			<button>Pages</button>
+			<button disabled className="disable">
+				About
+			</button>
+			<button disabled className="disable">
+				Blog
+			</button>
+			<button disabled className="disable">
+				Contact
+			</button>
+			<button disabled className="disable">
+				Pages
+			</button>
 		</div>
 	);
 };
