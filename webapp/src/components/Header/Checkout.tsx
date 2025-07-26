@@ -1,6 +1,8 @@
 import './Checkout.css';
 import { Divider, InputCounter, useShoppingCart } from '../Reusable';
 import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import type { CheckoutRequestBody, CheckoutResponse } from '../type';
 
 const Checkout = () => {
 	const {
@@ -10,6 +12,31 @@ const Checkout = () => {
 	} = useShoppingCart();
 	const [show, setShow] = useState(false);
 
+	const { isSuccess, isPending, data, error, mutate } =
+		useMutation<CheckoutResponse>({
+			mutationFn: async () => {
+				const checkoutRequestBody: CheckoutRequestBody = {
+					items: cartItems.map((item) => {
+						return {
+							name: item.name,
+							price: item.price * 100,
+							quantity: item.quantity,
+						};
+					}),
+				};
+				const response = await fetch(
+					import.meta.env.VITE_SMART_CART_API_URL +
+						'/create/checkout-session',
+					{
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(checkoutRequestBody),
+					}
+				);
+				return await response.json();
+			},
+		});
+
 	// This useEffect allows a smooth render, no choppy renders.
 	useEffect(() => {
 		checkoutItems();
@@ -17,6 +44,11 @@ const Checkout = () => {
 		return () => clearTimeout(showCheckoutTimer);
 	}, []);
 
+	const handleCheckoutClick = () => mutate();
+
+	useEffect(() => {
+		isSuccess && (window.location.href = data.sessionUrl);
+	}, [handleCheckoutClick]);
 	return (
 		<div className="checkout">
 			{show &&
@@ -50,8 +82,12 @@ const Checkout = () => {
 			</div>
 			<Divider size="sm" />
 			<div className="checkout-buttons">
-				<button className="primary-btn">Checkout</button>
+				<button onClick={handleCheckoutClick} className="primary-btn">
+					Checkout
+				</button>
 			</div>
+			{isPending && 'Loading ...'}
+			{error && 'Please try again'}
 		</div>
 	);
 };
