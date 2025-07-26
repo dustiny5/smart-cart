@@ -1,7 +1,13 @@
 server:
     port: ${SERVER_PORT:8080}
+    error:
+        include-stacktrace: ${SHOW_ERROR:never}
+        include-message: ${SHOW_ERROR:never}
+        include-binding-errors: ${SHOW_ERROR:never}
 stripe:
     api-key: ${STRIPE_API_KEY}
+    success-url: ${STRIPE_SUCCESS_URL}
+    cancel-url: ${STRIPE_CANCEL_URL}
 spring:
     application:
         name: api
