@@ -16,3 +16,19 @@ export type Product = {
 export type CartItem = Product & {
 	quantity: number;
 };
+
+type CheckoutItem = {
+	name: string;
+	price: number;
+	quantity: number;
+};
+
+export type CheckoutRequestBody = {
+	items: CheckoutItem[];
+};
+
+export type CheckoutResponse = {
+	sessionId: string;
+	sessionUrl: string;
+	message: string;
+};
