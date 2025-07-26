@@ -1,14 +1,16 @@
 package com.smartcart.api.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.smartcart.api.model.dto.ItemDTO;
-import com.stripe.Stripe;
+import com.smartcart.api.exception.InternalServerException;
+import com.smartcart.api.model.dto.CheckoutRequest;
+import com.smartcart.api.model.dto.CheckoutResponse;
+import com.smartcart.api.model.dto.CheckoutSessionResponse;
+import com.smartcart.api.model.mapper.StripeMapper;
 import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -17,57 +19,64 @@ import com.stripe.param.checkout.SessionCreateParams;
 // https://www.baeldung.com/spark-framework-rest-api
 @Service
 public class StripeServiceImpl implements StripeService {
-    
-    @Value("${stripe.api-key}")
-    private String STRIPE_API_KEY;
 
+    @Value("${stripe.success-url}")
+    private String successUrl;
+    @Value("${stripe.cancel-url}")
+    private String cancelUrl;
+
+    @Autowired
+    private StripeMapper stripeMapper;
 
     @Override
-    public Map<String, String> createCheckoutSession(List<ItemDTO> items) {
-
-        Stripe.apiKey = STRIPE_API_KEY;
-
-        List<SessionCreateParams.LineItem> lineItems = items.stream().map(item -> 
-            SessionCreateParams.LineItem.builder()
-                .setPriceData(
-                    SessionCreateParams.LineItem.PriceData.builder()
-                        .setCurrency("usd")
-                        .setUnitAmount(item.getPrice()) // in cents
-                        .setProductData(
-                            SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                .setName(item.getName())
-                                .build()
-                        )
-                        .build()
-                )
-                .setQuantity((long) item.getQuantity())
-                .build()
-        ).toList();
-
-
-            SessionCreateParams params = SessionCreateParams.builder()
-                .setUiMode(SessionCreateParams.UiMode.EMBEDDED)
-                .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("https://yourdomain.com/success")
-                .setCancelUrl("https://yourdomain.com/cancel")
-                .addAllLineItem(lineItems)
-                .build();
+    public CheckoutResponse createCheckoutSession(CheckoutRequest checkoutRequest) {
 
         try {
+            List<SessionCreateParams.LineItem> lineItems = checkoutRequest.getItems().stream().map(item
+                    -> SessionCreateParams.LineItem.builder()
+                            .setPriceData(
+                                    SessionCreateParams.LineItem.PriceData.builder()
+                                            .setCurrency("usd")
+                                            .setUnitAmount(item.getPrice())
+                                            .setProductData(
+                                                    SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                                            .setName(item.getName())
+                                                            .build()
+                                            )
+                                            .build()
+                            )
+                            .setQuantity(item.getQuantity())
+                            .build()
+            ).toList();
+
+            SessionCreateParams params = SessionCreateParams.builder()
+                    .setMode(SessionCreateParams.Mode.PAYMENT)
+                    .setShippingAddressCollection(
+                            SessionCreateParams.ShippingAddressCollection.builder()
+                                    .addAllowedCountry(SessionCreateParams.ShippingAddressCollection.AllowedCountry.CA)
+                                    .addAllowedCountry(SessionCreateParams.ShippingAddressCollection.AllowedCountry.US)
+                                    .build())
+                    .setSuccessUrl(successUrl + "?success=true")
+                    .setCancelUrl(cancelUrl + "?canceled=true")
+                    .addAllLineItem(lineItems)
+                    .build();
+
             Session session = Session.create(params);
-            Map<String, String> responseData = new HashMap<>();
-            responseData.put("id", session.getId());
-            return responseData;
+            return new CheckoutResponse(session.getId(), session.getUrl(), "Checkout session created.");
+
         } catch (StripeException e) {
-            e.printStackTrace();
-            // throw error
-            return null;
+            throw new InternalServerException("Failed to create checkout session: " + e.getMessage());
         }
     }
 
     @Override
-    public void getSesstionStatus() {
-        throw new UnsupportedOperationException("Unimplemented method 'getSesstionStatus'");
+    public CheckoutSessionResponse retrieveSession(String sessionId) {
+        try {
+            return stripeMapper.toResponse(Session.retrieve(sessionId));
+
+        } catch (StripeException e) {
+            throw new InternalServerException("Failed to retrieve sessionId: " + e.getMessage());
+        }
     }
-     
+
 }

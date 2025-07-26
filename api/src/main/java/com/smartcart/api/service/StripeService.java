@@ -1,11 +1,12 @@
 package com.smartcart.api.service;
 
-import java.util.List;
-import java.util.Map;
-
-import com.smartcart.api.model.dto.ItemDTO;
+import com.smartcart.api.model.dto.CheckoutRequest;
+import com.smartcart.api.model.dto.CheckoutResponse;
+import com.smartcart.api.model.dto.CheckoutSessionResponse;
 
 public interface StripeService {
-    Map<String, String> createCheckoutSession(List<ItemDTO> items);
-    void getSesstionStatus();
+
+    CheckoutResponse createCheckoutSession(CheckoutRequest checkoutRequest);
+
+    CheckoutSessionResponse retrieveSession(String sessionId);
 }
