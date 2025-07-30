@@ -14,15 +14,15 @@ const Footer = ({ children: links }: FooterProps) => {
 			<div className="footer-title">
 				<h3>Smart Cart</h3>
 				<div className="footer-socials">
-					<button>
+					<a href="https://www.facebook.com">
 						<img src="icon_facebook.svg" />
-					</button>
-					<button>
+					</a>
+					<a href="https://www.x.com">
 						<img src="icon_x.svg" />
-					</button>
-					<button>
+					</a>
+					<a href="https://www.instagram.com">
 						<img src="icon_instagram.svg" />
-					</button>
+					</a>
 				</div>
 			</div>
 			<Divider size="sm" lineColor="lightGray" />

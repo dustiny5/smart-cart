@@ -24,7 +24,9 @@
 		font-size: var(--text-xs);
 	}
 }
-
+.disable {
+	@apply cursor-default opacity-50;
+}
 .primary-text {
 	@apply text-[#23A6F0];
 }

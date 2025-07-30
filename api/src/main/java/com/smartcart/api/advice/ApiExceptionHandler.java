@@ -1,6 +1,7 @@
 package com.smartcart.api.advice;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -8,8 +9,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.smartcart.api.exception.InternalServerException;
 import com.smartcart.api.exception.NotFoundException;
 
+/*
+ * Custom definition of errors
+ */
 @RestControllerAdvice
 public class ApiExceptionHandler {
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public String handleNotFoundException(MethodArgumentNotValidException e) {
+        return "Bad Inputs: " + e.getMessage();
+    }
     
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
