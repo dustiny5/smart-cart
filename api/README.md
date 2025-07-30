@@ -41,3 +41,6 @@ For Intellij, use this [guide](https://www.baeldung.com/intellij-idea-environmen
 -   Configured a `Dockerfile` to deploy the **Spring API** .
 -   **Postgresql** is hosted on Render and manually configured using their UI.
 -   Point the database to this url: `postgresql://${HOSTNAME}:${PORT}$/${DATABASE}?currentSchema=${SCHEMA_NAME}`
+
+## Swagger Documentation API
+- https://smart-cart-7des.onrender.com/swagger-ui/index.html
