@@ -20,7 +20,9 @@ const ProductDetails = ({ item }: ProductDetailProps) => {
 						/>
 						<div className="product-details-info">
 							<h4 className="text-color">{item.name}</h4>
-							<h3 className="text-color">{`$${item.price}`}</h3>
+							<h3 className="text-color">{`$${item.price.toFixed(
+								2
+							)}`}</h3>
 							<div className="product-details-description secondary-text">
 								{item.description}
 							</div>
