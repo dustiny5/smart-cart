@@ -49,6 +49,7 @@ const Checkout = () => {
 	useEffect(() => {
 		isSuccess && (window.location.href = data.sessionUrl);
 	}, [handleCheckoutClick]);
+
 	return (
 		<div className="checkout">
 			{show &&
@@ -86,8 +87,14 @@ const Checkout = () => {
 					Checkout
 				</button>
 			</div>
-			{isPending && 'Loading ...'}
-			{error && 'Please try again'}
+			{isPending && <div className="checkout-message">Loading ...</div>}
+			{error && (
+				<div className="checkout-message">
+					{cartItems.length === 0
+						? 'Please add at least one item.'
+						: 'Payment is not working. Please try again'}
+				</div>
+			)}
 		</div>
 	);
 };
