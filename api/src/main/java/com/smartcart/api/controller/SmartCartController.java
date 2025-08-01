@@ -24,15 +24,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 // https://www.baeldung.com/spring-rest-openapi-documentation
 @OpenAPIDefinition(
-    info = @Info(
-        title = "SmartCart API",
-        version = "1.0",
-        description = "API for SmartCart application"
-    )
+        info = @Info(
+                title = "SmartCart API",
+                version = "1.0",
+                description = "API for SmartCart Application"
+        )
 )
 @RestController
 @RequestMapping("/api")
-public class ApiController {
+public class SmartCartController {
 
     @Autowired
     private CategoryService categoryService;
@@ -40,32 +40,34 @@ public class ApiController {
     @Autowired
     private ProductService productService;
 
-    @Operation(summary = "Find all categories with their products", 
-        description = "Retrieves a list of all categories along with their associated products.")
-    @ApiResponses(value = { 
-    @ApiResponse(responseCode = "200", description = "Found all categories with their products", 
-        content = { @Content(mediaType = "application/json") }),
-    @ApiResponse(responseCode = "404", description = "Categories not found", 
-        content = @Content), 
-    @ApiResponse(responseCode = "500", description = "Server error", 
-        content = @Content) })
+    @Operation(summary = "Find all categories with their products",
+            description = "Retrieves a list of all categories along with their associated products.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found all categories with their products",
+                content = {
+                    @Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Categories not found",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Server error",
+                content = @Content)})
     @GetMapping("/category/products")
     public List<CategoryDTO> getAllCategoryProducts() {
         return categoryService.getAllCategoryProducts();
     }
 
-    @Operation(summary = "Find page(s) of best seller products", 
-        description = "Retrieves page(s) of best selling products.")
-    @ApiResponses(value = { 
-    @ApiResponse(responseCode = "200", description = "Find page(s) of best selling products", 
-        content = { @Content(mediaType = "application/json") }),
-    @ApiResponse(responseCode = "404", description = "Products not found", 
-        content = @Content), 
-    @ApiResponse(responseCode = "500", description = "Server error", 
-        content = @Content) })
+    @Operation(summary = "Find page(s) of best seller products",
+            description = "Retrieves page(s) of best selling products.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Find page(s) of best selling products",
+                content = {
+                    @Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Products not found",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Server error",
+                content = @Content)})
     @GetMapping("/products/bestSeller")
     public Page<ProductDTO> getProductsIsBestSeller(@ParameterObject Pageable pageable) {
         return productService.getProductsIsBestSeller(pageable);
     }
-    
+
 }
