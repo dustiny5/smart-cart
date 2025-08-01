@@ -8,6 +8,15 @@ stripe:
     api-key: ${STRIPE_API_KEY}
     success-url: ${STRIPE_SUCCESS_URL}
     cancel-url: ${STRIPE_CANCEL_URL}
+aws:
+    cognito:
+        region: ${AWS_REGION}
+        user-pool-id: ${AWS_COGNITO_USER_POOL_ID}
+        client-id: ${AWS_COGNITO_CLIENT_ID}
+        client-secret: ${AWS_COGNITO_CLIENT_SECRET}
+        domain: ${AWS_COGNITO_DOMAIN}
+        token-uri: ${AWS_COGNITO_DOMAIN}/oauth2/token
+        redirect-uri: ${AWS_COGNITO_REDIRECT_URI}
 spring:
     application:
         name: api
@@ -37,3 +46,14 @@ spring:
         default-schema: smart_cart
         drop-first: false
         clear-checksums: false
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: https://cognito-idp.${aws.cognito.region}.amazonaws.com/${aws.cognito.user-pool-id}
+                    jwk-set-uri: https://cognito-idp.${aws.cognito.region}.amazonaws.com/${aws.cognito.user-pool-id}/.well-known/jwks.json
+springdoc:
+    swagger-ui:
+        oauth:
+            realm: Cognito
+            app-name: Authorize API with AWS Cognitio
