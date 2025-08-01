@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.smartcart.api.model.entity.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long>{
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @EntityGraph(value = "Category.products", type = EntityGraph.EntityGraphType.LOAD)
     List<Category> findAll();
