@@ -1,0 +1,18 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-08-01-add-pg_trgm-extension",
+        "author": "Yang, Dustin",
+        "changes": [
+          {
+            "sql": {
+              "dbms": "postgresql",
+              "sql": "CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public; CREATE INDEX idx_product_name ON smart_cart.product USING GIN (name gin_trgm_ops);"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

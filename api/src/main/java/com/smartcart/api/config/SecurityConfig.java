@@ -44,8 +44,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**",
-                        "/swagger-ui.html", "/actuator/health", "api/category/**",
-                        "api/products/**", "api/code/token").permitAll().anyRequest().authenticated()
+                        "/swagger-ui.html", "/actuator/health", "/api/category/**",
+                        "/api/products/**", "/api/code/token").permitAll().anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt
