@@ -15,7 +15,7 @@ const LoginRegister = ({ className }: LoginRegisterProps) => {
 	const loginUrl = `${domain}/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(
 		scope
 	)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
-	const { data, isLoading, error } = useAuthenticate();
+	const { data } = useAuthenticate();
 	const decodedJwt = data && decodeJwt(data.id_token);
 	return (
 		<button
