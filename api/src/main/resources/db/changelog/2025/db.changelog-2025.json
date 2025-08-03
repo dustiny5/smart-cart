@@ -9,6 +9,11 @@
             "include": {
                 "file": "db/changelog/2025/07/db.changelog.json"
             }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/08/db.changelog.json"
+            }
         }
     ]
 }

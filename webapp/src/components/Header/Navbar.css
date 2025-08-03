@@ -8,20 +8,20 @@
 	@apply pr-8 text-2xl font-bold;
 }
 .navbar-side {
-	@apply flex items-center lg:items-start space-x-6 text-lg max-2md:hidden;
+	@apply flex items-center xl:items-start space-x-6 text-lg max-xl:hidden;
 }
 .navbar-left {
-	@apply hidden 2md:flex space-x-6 text-lg font-bold;
+	@apply hidden xl:flex space-x-6 text-lg font-bold;
 }
 .navbar-menu {
-	@apply flex flex-auto items-center justify-end 2md:justify-between bg-white text-[#3C403D];
+	@apply flex flex-auto items-center justify-end xl:justify-between bg-white text-[#3C403D];
 }
 .navbar-side-login-register {
-	@apply hidden 2md:flex font-semibold;
+	@apply hidden xl:flex font-semibold;
 }
 .navbar-favorite {
-	@apply hidden 2md:block;
+	@apply hidden xl:block;
 }
 .navbar-hamburger {
-	@apply 2md:hidden;
+	@apply xl:hidden;
 }

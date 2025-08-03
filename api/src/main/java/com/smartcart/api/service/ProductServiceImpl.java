@@ -1,5 +1,6 @@
 package com.smartcart.api.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    
+
     @Autowired
     private ProductMapper productMapper;
 
@@ -27,5 +28,14 @@ public class ProductServiceImpl implements ProductService {
             throw new NotFoundException("No products found");
         }
         return productMapper.toDTOPage(productPage);
+    }
+
+    @Override
+    public List<ProductDTO> getProductsSimilarName(String name) {
+        List<Product> productsSimilarNames = productRepository.findBySimilarName(name);
+        if (productsSimilarNames.isEmpty()) {
+            throw new NotFoundException("No products found");
+        }
+        return productMapper.toDTOs(productsSimilarNames);
     }
 }

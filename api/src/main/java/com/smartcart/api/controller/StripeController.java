@@ -17,42 +17,47 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "cognito-oauth2")
+@SecurityRequirement(name = "bearerAuth")
 public class StripeController {
 
     @Autowired
     private StripeService stripeService;
 
-    @Operation(summary = "Create a stripe checkout session from the items.", 
-        description = "Create a stripe checkout session from the items.")
-    @ApiResponses(value = { 
-    @ApiResponse(responseCode = "200", description = "Stripe Checkout session successfully created.", 
-        content = { @Content(mediaType = "application/json") }),
-    @ApiResponse(responseCode = "400", description = "Please check your inputs.", 
-        content = @Content), 
-    @ApiResponse(responseCode = "500", description = "Server error", 
-        content = @Content) })
+    @Operation(summary = "Create a stripe checkout session from the items.",
+            description = "Create a stripe checkout session from the items.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Stripe Checkout session successfully created.",
+                content = {
+                    @Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "400", description = "Please check your inputs.",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Server error",
+                content = @Content)})
     @PostMapping("/create/checkout-session")
     public CheckoutResponse createCheckoutSession(@RequestBody @Valid CheckoutRequest checkoutRequest) {
         return stripeService.createCheckoutSession(checkoutRequest);
     }
 
-    @Operation(summary = "Retrieve stripe session by id.", 
-        description = "Retrieve stripe session by id.")
-    @ApiResponses(value = { 
-    @ApiResponse(responseCode = "200", description = "Retrieved stripe session", 
-        content = { @Content(mediaType = "application/json") }),
-    @ApiResponse(responseCode = "404", description = "Session ID not found", 
-        content = @Content), 
-    @ApiResponse(responseCode = "500", description = "Server error", 
-        content = @Content) })
+    @Operation(summary = "Retrieve stripe session by id.",
+            description = "Retrieve stripe session by id.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Retrieved stripe session",
+                content = {
+                    @Content(mediaType = "application/json")}),
+        @ApiResponse(responseCode = "404", description = "Session ID not found",
+                content = @Content),
+        @ApiResponse(responseCode = "500", description = "Server error",
+                content = @Content)})
     @GetMapping("/session/{sessionId}")
     public CheckoutSessionResponse retrieveSession(@PathVariable @NotBlank String sessionId) {
         return stripeService.retrieveSession(sessionId);
     }
-    
+
 }

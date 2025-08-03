@@ -1,49 +1,33 @@
 import { Modal } from '../Reusable';
+import type { Product } from '../type';
 import Checkout from './Checkout';
+import LoginRegister from './LoginRegister';
 import type { NavbarSideProps } from './NavbarLeft';
+import SearchInput from './SearchInput';
 import ShoppingCart from './ShoppingCart';
 
-const NavbarRight = ({ className, isHamburgerMenu }: NavbarSideProps) => {
+type NavbarRight = NavbarSideProps & {
+	onSetShowProductDetails: React.Dispatch<
+		React.SetStateAction<Product | undefined>
+	>;
+};
+
+const NavbarRight = ({
+	className,
+	isHamburgerMenu,
+	onSetShowProductDetails,
+}: NavbarRight) => {
 	const hamburgerMenuSytle = {
 		loginRegister: isHamburgerMenu ? 'flex' : 'navbar-side-login-register',
 		favorite: isHamburgerMenu ? 'block' : 'navbar-favorite',
 	};
 	return (
 		<div className={className}>
-			<button
-				disabled
-				className={`disable ${hamburgerMenuSytle.loginRegister}`}
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					strokeWidth={1.5}
-					stroke="currentColor"
-					className="size-6 max-lg:hidden"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-					/>
-				</svg>
-				<div>Login / Register</div>
-			</button>
-			<button disabled className="disable">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					className="size-6"
-				>
-					<path
-						fillRule="evenodd"
-						d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-						clipRule="evenodd"
-					/>
-				</svg>
-			</button>
+			<LoginRegister className={hamburgerMenuSytle.loginRegister} />
+			<SearchInput
+				isHamburgerMenu={isHamburgerMenu}
+				onSetShowProductDetails={onSetShowProductDetails}
+			/>
 			<Modal component={<ShoppingCart />}>
 				<Checkout />
 			</Modal>
