@@ -8,7 +8,7 @@
           {
             "sql": {
               "dbms": "postgresql",
-              "sql": "CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA public; CREATE INDEX idx_product_name ON smart_cart.product USING GIN (name gin_trgm_ops);"
+              "sql": "CREATE EXTENSION IF NOT EXISTS pg_trgm WITH SCHEMA pg_catalog; CREATE INDEX IF NOT EXISTS idx_product_name ON smart_cart.product USING GIN (name gin_trgm_ops);"
             }
           }
         ]
