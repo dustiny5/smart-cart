@@ -2,8 +2,8 @@
 @import '../../Theme.css';
 
 .hamburger-menu {
-	@apply pt-14 fixed top-0 right-0 h-full sm:w-[30%] max-sm:w-[35%] xs:w-[45%] bg-white shadow-lg z-10;
+	@apply pt-14 fixed top-0 right-0 h-full sm:w-[30%] max-sm:w-[35%] xs:w-[50%] bg-white shadow-lg z-10;
 }
 .hamburger-menu-animate {
-	@apply transform transition-transform duration-300 ease-in-out;
+	@apply transition-all duration-500 ease-in-out;
 }

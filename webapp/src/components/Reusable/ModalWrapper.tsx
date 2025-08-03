@@ -1,7 +1,7 @@
 import { useHidden, useWindowSize } from './hooks';
 import { type ReactNode, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
-import { SCREEN_WIDTH_2MD } from '../constants';
+import { SCREEN_WIDTH_XL } from '../constants';
 
 type ModalWrapper = {
 	refDropDown: RefObject<HTMLDivElement | null>;
@@ -30,7 +30,7 @@ const ModalWrapper = ({
 		both modals instead of rendering the ProductDetails component.
 	*/
 	!isNormalClose && useHidden(refDropDown, refBtn, () => onSetIsHidden(true));
-	isNormalClose && useWindowSize() > SCREEN_WIDTH_2MD && onSetIsHidden(true);
+	isNormalClose && useWindowSize() > SCREEN_WIDTH_XL && onSetIsHidden(true);
 
 	/*
 		Hiding the dropdown after click makes the screen less bulky

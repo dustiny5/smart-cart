@@ -28,6 +28,7 @@ const Navbar = ({ onSetShowProductDetails }: NavbarProps) => {
 					<NavbarRight
 						className="navbar-side primary-text"
 						isHamburgerMenu={false}
+						onSetShowProductDetails={onSetShowProductDetails}
 					/>
 					<Modal
 						isNormalClose={true}
@@ -61,6 +62,9 @@ const Navbar = ({ onSetShowProductDetails }: NavbarProps) => {
 							<NavbarRight
 								className="flex flex-col items-center gap-y-3 primary-text"
 								isHamburgerMenu={true}
+								onSetShowProductDetails={
+									onSetShowProductDetails
+								}
 							/>
 						</HamburgerMenu>
 					</Modal>
