@@ -15,6 +15,7 @@ import com.smartcart.api.constant.StatusEnum;
 import com.smartcart.api.exception.NotFoundException;
 import com.smartcart.api.model.dto.OrderDTO;
 import com.smartcart.api.model.dto.OrderRequest;
+import com.smartcart.api.model.dto.PageResponse;
 import com.smartcart.api.model.dto.ProductIdQuantity;
 import com.smartcart.api.model.entity.Order;
 import com.smartcart.api.model.entity.OrderProduct;
@@ -128,12 +129,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Page<OrderDTO> getOrderById(Pageable pageable, Long orderId) {
+    public PageResponse<OrderDTO> getOrderById(Pageable pageable, Long orderId) {
         Page<Order> orderPage = orderRepository.findById(orderId, pageable);
         if (orderPage.getContent().isEmpty()) {
             throw new NotFoundException("No order found");
         }
-        return orderPage.map(orderMapper::toDTO);
+        return new PageResponse<>(
+                orderMapper.toDTOs(orderPage.getContent()),
+                orderPage.getNumber(),
+                orderPage.getSize(),
+                orderPage.getTotalElements(),
+                orderPage.hasNext(),
+                orderPage.isLast()
+        );
     }
 
     @Override
