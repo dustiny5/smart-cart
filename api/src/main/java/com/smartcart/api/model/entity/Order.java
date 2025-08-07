@@ -2,9 +2,13 @@ package com.smartcart.api.model.entity;
 
 import java.util.Set;
 
+import com.smartcart.api.constant.StatusEnum;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +24,7 @@ import lombok.Setter;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(columnDefinition = "text", unique = true)
@@ -29,8 +33,9 @@ public class Order {
     @Column
     private Float totalAmount;
 
+    @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "text")
-    private String status;
+    private StatusEnum status;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderProduct> orderProducts;

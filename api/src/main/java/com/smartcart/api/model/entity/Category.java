@@ -15,18 +15,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="category", schema="smart_cart")
+@Table(name = "category", schema = "smart_cart")
 @NamedEntityGraph(
-    name = "Category.products",
-    attributeNodes = @NamedAttributeNode("products")
+        name = "Category.products",
+        attributeNodes = @NamedAttributeNode("products")
 )
 @Getter
 @Setter
 public class Category {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(columnDefinition = "text")
     private String name;
 
