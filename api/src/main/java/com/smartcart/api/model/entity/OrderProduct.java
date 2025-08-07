@@ -16,11 +16,12 @@ import lombok.Setter;
 public class OrderProduct {
 
     @EmbeddedId
-    private OrderProductId id;
+    private OrderProductId id = new OrderProductId();
 
     @ManyToOne
     @MapsId("orderId")
     @JoinColumn(name = "order_id")
+
     private Order order;
 
     @ManyToOne
@@ -28,6 +29,6 @@ public class OrderProduct {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private Integer quantiy;
+    private Integer quantity;
 
 }
