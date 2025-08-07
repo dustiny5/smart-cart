@@ -3,12 +3,10 @@ package com.smartcart.api.model.entity;
 import java.io.Serializable;
 
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Embeddable
-@Getter
-@Setter
+@Data
 public class OrderProductId implements Serializable {
 
     private Long orderId;
