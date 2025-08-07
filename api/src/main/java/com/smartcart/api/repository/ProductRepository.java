@@ -1,6 +1,7 @@
 package com.smartcart.api.repository;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,4 +18,6 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
 
     @Query(value = "SELECT * FROM smart_cart.product WHERE name % ?1", nativeQuery = true)
     List<Product> findBySimilarName(String name);
+
+    Set<Product> findByIdIn(Set<Long> productIds);
 }
