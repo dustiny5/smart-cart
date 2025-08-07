@@ -39,13 +39,15 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // TODO: Remove /api/order/** endpoint after implementing RBAC
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**",
                         "/swagger-ui.html", "/actuator/health", "/api/category/**",
-                        "/api/products/**", "/api/code/token").permitAll().anyRequest().authenticated()
+                        "/api/products/**", "/api/code/token", "/api/order/**")
+                .permitAll().anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(jwt -> jwt

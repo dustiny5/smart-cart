@@ -1,6 +1,7 @@
 package com.smartcart.api.service;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
         if (productPage.getContent().isEmpty()) {
             throw new NotFoundException("No products found");
         }
-        return productMapper.toDTOPage(productPage);
+        return productPage.map(productMapper::toDTO);
     }
 
     @Override

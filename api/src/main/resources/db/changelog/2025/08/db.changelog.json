@@ -4,6 +4,11 @@
             "include": {
                 "file": "db/changelog/2025/08/db.changelog-add-pg_trgm-extension.json"
             }
+        },
+        {
+            "include": {
+                "file": "db/changelog/2025/08/db.changelog-refactor-tables.json"
+            }
         }
     ]
 }

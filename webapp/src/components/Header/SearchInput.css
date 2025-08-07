@@ -4,7 +4,7 @@
 	@apply visible;
 }
 .search-input-input {
-	@apply rounded-2xl ring-[#23A6F0] border-2 outline-none transition-all duration-500 ease-in-out;
+	@apply rounded-2xl border-[#23A6F0] border-2 outline-none transition-all duration-500 ease-in-out;
 }
 .search-input-icon {
 	@apply absolute pt-1 pl-2;
