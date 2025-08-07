@@ -1,0 +1,12 @@
+version: 2
+updates:
+    - package-ecosystem: 'maven'
+      directory: '/api'
+      schedule:
+          interval: 'weekly'
+      target-branch: 'develop'
+    - package-ecosystem: 'npm'
+      directory: '/webapp'
+      schedule:
+          interval: 'weekly'
+      target-branch: 'develop'
