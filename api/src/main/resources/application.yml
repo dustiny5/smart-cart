@@ -1,13 +1,3 @@
-server:
-    port: ${SERVER_PORT:8080}
-    error:
-        include-stacktrace: ${SHOW_ERROR:never}
-        include-message: ${SHOW_ERROR:never}
-        include-binding-errors: ${SHOW_ERROR:never}
-stripe:
-    api-key: ${STRIPE_API_KEY}
-    success-url: ${STRIPE_SUCCESS_URL}
-    cancel-url: ${STRIPE_CANCEL_URL}
 aws:
     cognito:
         region: ${AWS_REGION}
@@ -17,6 +7,19 @@ aws:
         domain: ${AWS_COGNITO_DOMAIN}
         token-uri: ${AWS_COGNITO_DOMAIN}/oauth2/token
         redirect-uri: ${AWS_COGNITO_REDIRECT_URI}
+show:
+    error: ${SHOW_ERROR:never}
+stripe:
+    api-key: ${STRIPE_API_KEY}
+    success-url: ${STRIPE_SUCCESS_URL}
+    cancel-url: ${STRIPE_CANCEL_URL}
+
+server:
+    port: ${SERVER_PORT:8080}
+    error:
+        include-stacktrace: ${show.error:never}
+        include-message: ${show.error:never}
+        include-binding-errors: ${show.error:never}
 spring:
     application:
         name: api
