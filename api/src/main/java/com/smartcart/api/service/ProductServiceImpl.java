@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.smartcart.api.exception.NotFoundException;
+import com.smartcart.api.model.dto.PageResponse;
 import com.smartcart.api.model.dto.ProductDTO;
 import com.smartcart.api.model.entity.Product;
 import com.smartcart.api.model.mapper.ProductMapper;
@@ -23,12 +24,19 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
-    public Page<ProductDTO> getProductsIsBestSeller(Pageable pageable) {
+    public PageResponse<ProductDTO> getProductsIsBestSeller(Pageable pageable) {
         Page<Product> productPage = productRepository.findByIsBestSellerTrue(pageable);
         if (productPage.getContent().isEmpty()) {
             throw new NotFoundException("No products found");
         }
-        return productPage.map(productMapper::toDTO);
+        return new PageResponse<>(
+                productMapper.toDTOs(productPage.getContent()),
+                productPage.getNumber(),
+                productPage.getSize(),
+                productPage.getTotalElements(),
+                productPage.hasNext(),
+                productPage.isLast()
+        );
     }
 
     @Override

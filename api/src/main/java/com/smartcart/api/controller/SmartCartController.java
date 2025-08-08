@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartcart.api.model.dto.CategoryDTO;
 import com.smartcart.api.model.dto.OrderDTO;
 import com.smartcart.api.model.dto.OrderRequest;
+import com.smartcart.api.model.dto.PageResponse;
 import com.smartcart.api.model.dto.ProductDTO;
 import com.smartcart.api.service.CategoryService;
 import com.smartcart.api.service.OrderService;
@@ -83,7 +83,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @GetMapping("/products/bestSeller")
-    public Page<ProductDTO> getProductsIsBestSeller(@ParameterObject Pageable pageable) {
+    public PageResponse<ProductDTO> getProductsIsBestSeller(@ParameterObject Pageable pageable) {
         return productService.getProductsIsBestSeller(pageable);
     }
 
@@ -112,7 +112,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @GetMapping("/order")
-    public ResponseEntity<Page<OrderDTO>> getOrder(@ParameterObject Pageable pageable, Long orderId) {
+    public ResponseEntity<PageResponse<OrderDTO>> getOrder(@ParameterObject Pageable pageable, Long orderId) {
         return ResponseEntity.ok().body(orderService.getOrderById(pageable, orderId));
     }
 
