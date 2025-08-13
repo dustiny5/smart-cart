@@ -7,6 +7,7 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -46,6 +48,7 @@ import jakarta.validation.constraints.NotBlank;
 )
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(name = "bearerAuth")
 public class SmartCartController {
 
     @Autowired
@@ -112,6 +115,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @GetMapping("/order")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<PageResponse<OrderDTO>> getOrder(@ParameterObject Pageable pageable, Long orderId) {
         return ResponseEntity.ok().body(orderService.getOrderById(pageable, orderId));
     }
@@ -126,6 +130,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @PostMapping("/order")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody @Valid OrderRequest orderProductRequest, HttpServletRequest request) {
         return ResponseEntity.created(URI.create(request.getRequestURI()))
                 .body(orderService.createOrder(orderProductRequest));
@@ -141,6 +146,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @PutMapping("/order")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<OrderDTO> updateOrder(@RequestBody @Valid OrderRequest orderProductRequest) {
         return ResponseEntity.ok()
                 .body(orderService.updateOrder(orderProductRequest));
@@ -156,7 +162,7 @@ public class SmartCartController {
         @ApiResponse(responseCode = "500", description = "Server error",
                 content = @Content)})
     @DeleteMapping("/order/{id}")
-
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Boolean> deleteOrder(@PathVariable @Min(1) Long id) {
         return ResponseEntity.ok().body(orderService.deleteOrder(id));
     }

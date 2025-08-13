@@ -1,13 +1,14 @@
 package com.smartcart.api.service;
 
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.http.ResponseEntity;
 
-import com.smartcart.api.model.dto.CognitoJwtResponse;
-import com.smartcart.api.model.dto.CognitoUserResponse;
+import com.smartcart.api.model.dto.CognitoUserInfoResponse;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface AuthService {
 
-    CognitoUserResponse getCurrentUser(JwtAuthenticationToken token);
+    CognitoUserInfoResponse getCurrentUser(String jwt);
 
-    CognitoJwtResponse exchangeCodeForToken(String code);
+    ResponseEntity<CognitoUserInfoResponse> exchangeCodeForToken(String code, HttpServletResponse response);
 }

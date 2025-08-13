@@ -7,13 +7,15 @@ aws:
         domain: ${AWS_COGNITO_DOMAIN}
         token-uri: ${AWS_COGNITO_DOMAIN}/oauth2/token
         redirect-uri: ${AWS_COGNITO_REDIRECT_URI}
+cookie:
+    secure: ${COOKIE_SECURE}
+    same-site: ${COOKIE_SAME_SITE}
 show:
     error: ${SHOW_ERROR:never}
 stripe:
     api-key: ${STRIPE_API_KEY}
     success-url: ${STRIPE_SUCCESS_URL}
     cancel-url: ${STRIPE_CANCEL_URL}
-
 server:
     port: ${SERVER_PORT:8080}
     error:
