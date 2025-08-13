@@ -1,0 +1,96 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "2025-08-03-drop-user-table",
+        "author": "Yang, Dustin",
+        "comment": "Table not needed. AWS Cognito will handle user info.",
+        "changes": [
+          {
+            "sql": {
+              "dbms": "postgresql",
+              "sql": "DROP TABLE IF EXISTS smart_cart.user;"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2025-08-03-update-order-table",
+        "author": "Yang, Dustin",
+        "comment": "Update user_id column to user's email",
+        "changes": [
+          {
+            "renameColumn": {
+              "tableName": "order",
+              "schemaName": "smart_cart",
+              "oldColumnName": "user_id",
+              "newColumnName": "email"
+            }
+          },
+          {
+            "modifyDataType": {
+              "tableName": "order",
+              "columnName": "email",
+              "newDataType": "TEXT",
+              "schemaName": "smart_cart"
+            }
+          },
+          {
+            "addUniqueConstraint": {
+              "columnNames": "email",
+              "tableName": "order",
+              "constaintName": "uq_email",
+              "schemaName": "smart_cart"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "2025-08-03-update-order_product-table",
+        "author": "Yang, Dustin",
+        "comment": "Refactor order_product table(previously order_item)",
+        "changes": [
+          {
+            "renameTable": {
+              "newTableName": "order_product",
+              "oldTableName": "order_item",
+              "schemaName": "smart_cart"
+          }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseTableName": "order_product",
+              "baseColumnNames": "order_id",
+              "referencedTableName": "order",
+              "referencedColumnNames": "id",
+              "constraintName": "fk_order_product_order",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseTableName": "order_product",
+              "baseColumnNames": "product_id",
+              "referencedTableName": "product",
+              "referencedColumnNames": "id",
+              "constraintName": "fk_order_product_product",
+              "onDelete": "CASCADE"
+            }
+          },
+          {
+            "addPrimaryKey": {
+              "columnNames": "order_id, product_id",
+              "constraintName": "ck_order_product",
+              "schemaName": "smart_cart",
+              "tableName": "order_product"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

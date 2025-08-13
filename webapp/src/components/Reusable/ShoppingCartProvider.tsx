@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+	type ReactNode,
+} from 'react';
 import type { CartItem } from '../type';
 import { DEFAULT_MAX, DEFAULT_MIN } from '../constants';
 
@@ -19,9 +25,23 @@ type ShoppingCartContextType = {
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
 	{} as ShoppingCartContextType
 );
+const STORAGE_KEY = 'smart-cart-items';
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+	useEffect(() => {
+		const storedItems = localStorage.getItem(STORAGE_KEY);
+		const storedCartItems = storedItems ? JSON.parse(storedItems) : [];
+
+		if (storedCartItems.length > 0) {
+			setCartItems(storedCartItems);
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
+	}, [cartItems]);
 
 	const totalCartItems = cartItems.reduce(
 		(sum, item) => {
@@ -32,9 +52,12 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 		{ total: 0, price: 0 }
 	);
 
-	const checkoutItems = () =>
-		setCartItems(cartItems.filter((cartItem) => cartItem.quantity !== 0));
-
+	const checkoutItems = () => {
+		const filteredCartItems = cartItems.filter(
+			(cartItem) => cartItem.quantity !== 0
+		);
+		setCartItems(filteredCartItems);
+	};
 	const clearCart = () => setCartItems([]);
 
 	const findCartItem = (id: number) =>

@@ -1,6 +1,5 @@
 package com.smartcart.api.config;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,11 +16,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimValidator;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtIssuerValidator;
 import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -37,19 +38,25 @@ public class SecurityConfig {
     @Value("${aws.cognito.region}")
     private String region;
 
+    @Value("${aws.cognito.client-id}")
+    private String clientId;
+
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // TODO: Remove /api/order/** endpoint after implementing RBAC
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .addFilterBefore(new JwtCookieToHeaderFilter(), BearerTokenAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/order/**", "/api/user").hasRole("USER")
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**",
                         "/swagger-ui.html", "/actuator/health", "/api/category/**",
-                        "/api/products/**", "/api/code/token").permitAll().anyRequest().authenticated()
+                        "/api/products/**", "/api/code/token", "/api/user")
+                .permitAll().anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> jwt
-                .decoder(jwtDecoder())
+                .jwt(jwt -> jwt.decoder(jwtDecoder())
                 .jwtAuthenticationConverter(jwtAuthenticationConverter())
                 )
                 );
@@ -82,18 +89,21 @@ public class SecurityConfig {
 
     @Bean
     public OAuth2TokenValidator<Jwt> jwtValidator() {
-        List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
-        validators.add(new JwtTimestampValidator());
-        validators.add(new JwtIssuerValidator(String.format("https://cognito-idp.%s.amazonaws.com/%s", region, userPoolId)));
-        return new DelegatingOAuth2TokenValidator<>(validators);
+        String issuer = String.format("https://cognito-idp.%s.amazonaws.com/%s", region, userPoolId);
+
+        OAuth2TokenValidator<Jwt> withIssuer = new JwtIssuerValidator(issuer);
+        OAuth2TokenValidator<Jwt> withTimestamp = new JwtTimestampValidator();
+        OAuth2TokenValidator<Jwt> withAudience = new JwtClaimValidator<List<String>>("aud", aud -> aud != null && aud.contains(clientId));
+
+        return new DelegatingOAuth2TokenValidator<>(withIssuer, withTimestamp, withAudience);
     }
 
     @Bean
     UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://smart-cart-webapp.netlify.app/"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "https://smart-cart-webapp.netlify.app"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.addAllowedHeader("Content-Type");
+        configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

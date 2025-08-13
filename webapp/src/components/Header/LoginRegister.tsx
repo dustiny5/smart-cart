@@ -1,4 +1,3 @@
-import decodeJwt from '../../util/decodeJwt';
 import { useAuthenticate } from '../Reusable/hooks';
 
 type LoginRegisterProps = {
@@ -16,7 +15,7 @@ const LoginRegister = ({ className }: LoginRegisterProps) => {
 		scope
 	)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 	const { data } = useAuthenticate();
-	const decodedJwt = data && decodeJwt(data.id_token);
+
 	return (
 		<button
 			className={className}
@@ -36,11 +35,7 @@ const LoginRegister = ({ className }: LoginRegisterProps) => {
 					d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
 				/>
 			</svg>
-			{decodedJwt ? (
-				<div>{decodedJwt.given_name}</div>
-			) : (
-				<div>Login / Register</div>
-			)}
+			{data ? <div>{data.givenName}</div> : <div>Login / Register</div>}
 		</button>
 	);
 };

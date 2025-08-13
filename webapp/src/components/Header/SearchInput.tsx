@@ -92,14 +92,14 @@ const SearchInput = ({
 				onFocus={() => setIsHiddenSearch(false)}
 				placeholder="Search"
 				value={search}
-				className={`search-input-input ${
+				className={`search-input-input text-color ${
 					!isHiddenSearch
 						? hamburgerStyle.input
 						: 'max-w-0 p-0 opacity-0'
 				}`}
 				type="search"
 			/>
-			<div ref={dropDownRef} className="search-input-products">
+			<div ref={dropDownRef} className="search-input-products text-color">
 				{/* If the user clicks away form the search `isHiddenSearch`,
 				 * deletes all text the `search`,
 				 * or enters a text that is not found(error),
