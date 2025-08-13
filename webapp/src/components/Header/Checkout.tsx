@@ -16,7 +16,7 @@ const Checkout = () => {
 		useMutation<CheckoutResponse>({
 			mutationFn: async () => {
 				const checkoutRequestBody: CheckoutRequestBody = {
-					items: cartItems.map((item) => {
+					items: checkoutItems().map((item) => {
 						return {
 							name: item.name,
 							price: item.price * 100,
@@ -49,7 +49,7 @@ const Checkout = () => {
 	useEffect(() => {
 		isSuccess && (window.location.href = data.sessionUrl);
 	}, [handleCheckoutClick]);
-
+	console.log('checkoutItems', cartItems);
 	return (
 		<div className="checkout">
 			{show &&
