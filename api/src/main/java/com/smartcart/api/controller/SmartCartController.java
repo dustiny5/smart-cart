@@ -105,7 +105,6 @@ public class SmartCartController {
         return productService.getProductsSimilarName(name);
     }
 
-    // TODO: Add RBAC for logged in users
     @Operation(summary = "Read an order of products.",
             description = "Read an order of products. This is also used as the shopping cart.")
     @ApiResponses(value = {
@@ -120,7 +119,6 @@ public class SmartCartController {
         return ResponseEntity.ok().body(orderService.getOrderById(pageable, orderId));
     }
 
-    // TODO: Add RBAC for logged in users
     @Operation(summary = "Create an order of products.",
             description = "Create an order of products. This is also used as the shopping cart.")
     @ApiResponses(value = {
@@ -136,7 +134,6 @@ public class SmartCartController {
                 .body(orderService.createOrder(orderProductRequest));
     }
 
-    // TODO: Add RBAC for logged in users
     @Operation(summary = "Update an order of products.",
             description = "Update an order of products.")
     @ApiResponses(value = {
@@ -152,7 +149,6 @@ public class SmartCartController {
                 .body(orderService.updateOrder(orderProductRequest));
     }
 
-    // TODO: Add RBAC for logged in users
     @Operation(summary = "Delete an order of products.",
             description = "Delete an order of products.")
     @ApiResponses(value = {

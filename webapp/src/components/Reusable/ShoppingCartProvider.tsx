@@ -6,7 +6,7 @@ import {
 	type ReactNode,
 } from 'react';
 import type { CartItem } from '../type';
-import { DEFAULT_MAX, DEFAULT_MIN } from '../constants';
+import { DEFAULT_MAX, DEFAULT_MIN, STORAGE_KEY } from '../constants';
 
 type ShoppingCartProviderProps = {
 	children: ReactNode;
@@ -20,12 +20,11 @@ type ShoppingCartContextType = {
 	removeCartItem: (id: number) => void;
 	clearCart: () => void;
 	totalCartItems: { total: number; price: number };
-	checkoutItems: () => void;
+	checkoutItems: () => CartItem[];
 };
 const ShoppingCartContext = createContext<ShoppingCartContextType>(
 	{} as ShoppingCartContextType
 );
-const STORAGE_KEY = 'smart-cart-items';
 
 const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 	const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -57,6 +56,7 @@ const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
 			(cartItem) => cartItem.quantity !== 0
 		);
 		setCartItems(filteredCartItems);
+		return filteredCartItems;
 	};
 	const clearCart = () => setCartItems([]);
 
