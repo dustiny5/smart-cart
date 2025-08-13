@@ -1,18 +1,48 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-type CognitoJwtResponse = {
-	access_token: string;
-	id_token: string;
-	refresh_token: string;
-	token_type: string;
-	expires_in: number;
+
+type CognitoUserInfoResponse = {
+	givenName: string;
 };
 
 const useAuthenticate = () => {
-	const [searchParams] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const code = searchParams.get('code');
 
-	const { data, isLoading, error } = useQuery<CognitoJwtResponse>({
+	useEffect(() => {
+		if (code) {
+			searchParams.delete('code');
+			setSearchParams(searchParams);
+		}
+	}, [code]);
+
+	const {
+		data: dataGetUserInfo,
+		isLoading: isLoadingGetUserInfo,
+		error: errorGetUserInfo,
+	} = useQuery<CognitoUserInfoResponse>({
+		queryKey: ['getUserInfo'],
+		queryFn: async () => {
+			const response = await fetch(
+				`${import.meta.env.VITE_SMART_CART_API_URL}/user`,
+				{
+					method: 'GET',
+					credentials: 'include',
+				}
+			);
+			if (!response.ok) {
+				throw new Error(
+					'Something went wrong authenticating the user.'
+				);
+			}
+			return response.json();
+		},
+		enabled: !code,
+		retry: false,
+	});
+
+	const { data, isLoading, error } = useQuery<CognitoUserInfoResponse>({
 		queryKey: ['cognitoToken'],
 		queryFn: async () => {
 			const response = await fetch(
@@ -21,6 +51,7 @@ const useAuthenticate = () => {
 				}/code/token?code=${code}`,
 				{
 					method: 'POST',
+					credentials: 'include',
 				}
 			);
 			if (!response.ok) {
@@ -32,7 +63,14 @@ const useAuthenticate = () => {
 		},
 		enabled: !!code,
 	});
-	// TODO: Save token locally
+
+	if (dataGetUserInfo) {
+		return {
+			data: dataGetUserInfo,
+			isLoading: isLoadingGetUserInfo,
+			error: errorGetUserInfo,
+		};
+	}
 	return { data, isLoading, error };
 };
 
