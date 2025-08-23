@@ -1,5 +1,9 @@
 import './Links.css';
-
+declare global {
+	interface Window {
+		dataLayer: Record<string, any>[];
+	}
+}
 const LINKS = [
 	{
 		title: 'Company Info',
