@@ -62,7 +62,7 @@ const Links = () => {
 					Join our mailing list to receive the latest news and updates
 					from our team.
 				</p>
-				<a href="tel:(626) 470-8829">(626) 470-8829</a>
+				<a href="tel:6264708829">(626) 470-8829</a>
 			</div>
 		</div>
 	);
