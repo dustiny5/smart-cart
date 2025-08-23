@@ -44,7 +44,8 @@ const LINKS = [
 ];
 const handleClick = () => {
 	window.dataLayer.push({
-		event: 'Phone Click',
+		event: 'phone_click',
+		phone_number: '6264708829',
 	});
 };
 const Links = () => {
