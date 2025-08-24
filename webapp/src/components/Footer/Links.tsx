@@ -1,9 +1,5 @@
 import './Links.css';
-declare global {
-	interface Window {
-		dataLayer: Record<string, any>[];
-	}
-}
+
 const LINKS = [
 	{
 		title: 'Company Info',
@@ -42,12 +38,7 @@ const LINKS = [
 		],
 	},
 ];
-const handleClick = () => {
-	window.dataLayer.push({
-		event: 'phone_click',
-		phone_number: '6264708829',
-	});
-};
+
 const Links = () => {
 	return (
 		<div className="links text-color">
@@ -71,9 +62,7 @@ const Links = () => {
 					Join our mailing list to receive the latest news and updates
 					from our team.
 				</p>
-				<a href="tel:6264708829" onClick={handleClick}>
-					(626) 470-8829
-				</a>
+				<a href="tel:6264708829">(626) 470-8829</a>
 			</div>
 		</div>
 	);
