@@ -10,7 +10,6 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.OAuthFlow;
 import io.swagger.v3.oas.models.security.OAuthFlows;
 import io.swagger.v3.oas.models.security.Scopes;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
@@ -47,11 +46,9 @@ public class SwaggerConfig {
                         )
                 )
                 .info(new Info()
-                        .title("Smart Cart API")
+                        .title("SmartCart API")
                         .version("1.0")
-                        .description("Authorize API with AWS Cognito")
-                )
-                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
-                .addSecurityItem(new SecurityRequirement().addList("cognito-oauth2"));
+                        .description("API for SmartCart Application")
+                );
     }
 }

@@ -16,7 +16,6 @@ import com.smartcart.api.service.StripeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -24,15 +23,15 @@ import jakarta.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/api")
 @SecurityRequirement(name = "cognito-oauth2")
-@SecurityRequirement(name = "bearerAuth")
 public class StripeController {
 
     @Autowired
     private StripeService stripeService;
 
-    @Operation(summary = "Create a stripe checkout session from the items.",
-            description = "Create a stripe checkout session from the items.")
-    @ApiResponses(value = {
+    @Operation(
+            summary = "Create a stripe checkout session from the items.",
+            description = "Create a stripe checkout session from the items.",
+            responses = {
         @ApiResponse(responseCode = "200", description = "Stripe Checkout session successfully created.",
                 content = {
                     @Content(mediaType = "application/json")}),
@@ -45,9 +44,10 @@ public class StripeController {
         return stripeService.createCheckoutSession(checkoutRequest);
     }
 
-    @Operation(summary = "Retrieve stripe session by id.",
-            description = "Retrieve stripe session by id.")
-    @ApiResponses(value = {
+    @Operation(
+            summary = "Retrieve stripe session by id.",
+            description = "Retrieve stripe session by id.",
+            responses = {
         @ApiResponse(responseCode = "200", description = "Retrieved stripe session",
                 content = {
                     @Content(mediaType = "application/json")}),

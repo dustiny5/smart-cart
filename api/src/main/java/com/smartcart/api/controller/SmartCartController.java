@@ -26,9 +26,7 @@ import com.smartcart.api.service.CategoryService;
 import com.smartcart.api.service.OrderService;
 import com.smartcart.api.service.ProductService;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -39,16 +37,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 // https://www.baeldung.com/spring-rest-openapi-documentation
-@OpenAPIDefinition(
-        info = @Info(
-                title = "SmartCart API",
-                version = "1.0",
-                description = "API for SmartCart Application"
-        )
-)
 @RestController
 @RequestMapping("/api")
-@SecurityRequirement(name = "bearerAuth")
 public class SmartCartController {
 
     @Autowired
@@ -60,9 +50,10 @@ public class SmartCartController {
     @Autowired
     private OrderService orderService;
 
-    @Operation(summary = "Find all categories with their products",
-            description = "Retrieves a list of all categories along with their associated products.")
-    @ApiResponses(value = {
+    @Operation(
+            summary = "Find all categories with their products",
+            description = "Retrieves a list of all categories along with their associated products.",
+            responses = {
         @ApiResponse(responseCode = "200", description = "Found all categories with their products",
                 content = {
                     @Content(mediaType = "application/json")}),
@@ -75,9 +66,10 @@ public class SmartCartController {
         return categoryService.getAllCategoryProducts();
     }
 
-    @Operation(summary = "Find page(s) of best seller products",
-            description = "Retrieves page(s) of best selling products.")
-    @ApiResponses(value = {
+    @Operation(
+            summary = "Find page(s) of best seller products",
+            description = "Retrieves page(s) of best selling products.",
+            responses = {
         @ApiResponse(responseCode = "200", description = "Find page(s) of best selling products",
                 content = {
                     @Content(mediaType = "application/json")}),
@@ -105,24 +97,31 @@ public class SmartCartController {
         return productService.getProductsSimilarName(name);
     }
 
-    @Operation(summary = "Read an order of products.",
-            description = "Read an order of products. This is also used as the shopping cart.")
-    @ApiResponses(value = {
+    @Operation(
+            summary = "Read an order of products.",
+            security = {
+                @SecurityRequirement(name = "bearerAuth")},
+            description = "Read an order of products. This is also used as the shopping cart.",
+            responses = {
         @ApiResponse(responseCode = "201", description = "Read successfully",
                 content = {
                     @Content(mediaType = "application/json")}),
         @ApiResponse(responseCode = "500", description = "Server error",
-                content = @Content)})
+                        content = @Content)}
+    )
     @GetMapping("/order")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<PageResponse<OrderDTO>> getOrder(@ParameterObject Pageable pageable, Long orderId) {
         return ResponseEntity.ok().body(orderService.getOrderById(pageable, orderId));
     }
 
-    @Operation(summary = "Create an order of products.",
-            description = "Create an order of products. This is also used as the shopping cart.")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "201", description = "Order created successfully",
+    @Operation(
+            summary = "Create an order of products.",
+            security = {
+                @SecurityRequirement(name = "bearerAuth")},
+            description = "Create an order of products. This is also used as the shopping cart.",
+            responses = {
+                @ApiResponse(responseCode = "201", description = "Order created successfully",
                 content = {
                     @Content(mediaType = "application/json")}),
         @ApiResponse(responseCode = "500", description = "Server error",
@@ -134,10 +133,13 @@ public class SmartCartController {
                 .body(orderService.createOrder(orderProductRequest));
     }
 
-    @Operation(summary = "Update an order of products.",
-            description = "Update an order of products.")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Order updated successfully",
+    @Operation(
+            summary = "Update an order of products.",
+            security = {
+                @SecurityRequirement(name = "bearerAuth")},
+            description = "Update an order of products.",
+            responses = {
+                @ApiResponse(responseCode = "200", description = "Order updated successfully",
                 content = {
                     @Content(mediaType = "application/json")}),
         @ApiResponse(responseCode = "500", description = "Server error",
@@ -149,14 +151,18 @@ public class SmartCartController {
                 .body(orderService.updateOrder(orderProductRequest));
     }
 
-    @Operation(summary = "Delete an order of products.",
-            description = "Delete an order of products.")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Order deleted successfully",
-                content = {
-                    @Content}),
-        @ApiResponse(responseCode = "500", description = "Server error",
-                content = @Content)})
+    @Operation(
+            summary = "Delete an order of products.",
+            security = {
+                @SecurityRequirement(name = "bearerAuth")},
+            description = "Delete an order of products.",
+            responses = {
+                @ApiResponse(responseCode = "200", description = "Order deleted successfully",
+                        content = {
+                            @Content}),
+                @ApiResponse(responseCode = "500", description = "Server error",
+                        content = @Content)}
+    )
     @DeleteMapping("/order/{id}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Boolean> deleteOrder(@PathVariable @Min(1) Long id) {
