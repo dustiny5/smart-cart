@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/order/**", "/api/user").hasRole("USER")
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**",
                         "/swagger-ui.html", "/actuator/health", "/api/category/**",
-                        "/api/products/**", "/api/code/token", "api/create/checkout-session")
+                        "/api/products/**", "/api/code/token", "/api/create/checkout-session")
                 .permitAll().anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2

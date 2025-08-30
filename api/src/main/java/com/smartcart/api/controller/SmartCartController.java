@@ -27,7 +27,9 @@ import com.smartcart.api.service.OrderService;
 import com.smartcart.api.service.ProductService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -56,7 +58,14 @@ public class SmartCartController {
             responses = {
         @ApiResponse(responseCode = "200", description = "Found all categories with their products",
                 content = {
-                    @Content(mediaType = "application/json")}),
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(
+                                            schema = @Schema(implementation = CategoryDTO.class)
+                                    )
+                            )
+                        }
+                ),
         @ApiResponse(responseCode = "404", description = "Categories not found",
                 content = @Content),
         @ApiResponse(responseCode = "500", description = "Server error",
