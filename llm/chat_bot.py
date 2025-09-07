@@ -7,7 +7,7 @@ from langchain_community.agent_toolkits.openapi.toolkit import RequestsToolkit
 from langchain_community.utilities.requests import TextRequestsWrapper
 from langgraph.prebuilt import create_react_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
-
+# Note: REVERT to PR #163 to re-test working version of chat_bot.py at its mcp
 # https://python.langchain.com/docs/integrations/tools/requests/#instantiation
 # https://python.langchain.com/api_reference/langchain/chains/langchain.chains.api.base.APIChain.html#langchain.chains.api.base.APIChain
 ALLOW_DANGEROUS_REQUEST = True
@@ -31,7 +31,7 @@ client = MultiServerMCPClient(
         },
         'weather': {
             'url': 'http://localhost:8000/mcp',
-            'transport': 'streamable_http',
+            'transport': 'sse',
         }
     }
 )
@@ -64,15 +64,8 @@ def _get_api_spec() -> str:
     except:
         return 'Server Error'
 
-async def get_client_tools(): 
-    try:
-        return await client.get_tools()
-    except:
-        return []
-
 api_spec = _get_api_spec()
 tools = toolkit.get_tools()
-client_tools = asyncio.run(get_client_tools())
 system_message = f'''
 You are a precise and helpful customer service assistant for an online shopping platform.
 You have access **only** to the API documentation: {api_spec}.
@@ -152,16 +145,20 @@ User: Do you have shoes?
 Assistant:  
 There's currently no item that fits your description. Please feel free to ask another question.
 '''
-agent_executor = create_react_agent(llm, tools + client_tools, prompt=system_message)
 
-async def run_agent():
-    example_query = 'Can you tell me the categories with products'
-
+async def run_agent(query: str):
+    agent_executor = create_react_agent(llm, tools + await client.get_tools(), prompt=system_message)
+    print('agent_executor')
     events = agent_executor.astream(
-        {'messages': [('user', example_query)]},
+        {'messages': [('user', query)]},
         stream_mode='values',
     )
+    first = None
+    last = None
     async for event in events:
-        event['messages'][-1].pretty_print()
-        
-asyncio.run(run_agent())
+        if first is None:
+            first = event['messages'][-1].content
+            yield first
+        last = event['messages'][-1].content
+    if last is not None and last != first:
+        yield last
