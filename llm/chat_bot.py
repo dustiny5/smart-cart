@@ -153,7 +153,7 @@ Category exists but no products available (empty or out of stock):
  -"This category currently has no available products. Would you like to explore another category?"
 
 Product keyword not found in any category:
-- "There’s currently no product that matches your request. Please feel free to ask about another item."
+- "There's currently no product that matches your request. Please feel free to ask about another item."
 
 Multiple categories requested (needs >1 call):
 - "I cannot help with this request. Is there something else I can help with?"
