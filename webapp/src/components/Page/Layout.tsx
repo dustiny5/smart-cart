@@ -5,6 +5,7 @@ import { Body } from '../Body';
 import { Footer, Links } from '../Footer';
 import { useState } from 'react';
 import type { Product } from '../type';
+import { ChatBot } from '../ChatBot';
 
 const Layout = () => {
 	const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const Layout = () => {
 			<Footer>
 				<Links />
 			</Footer>
+			<ChatBot />
 		</QueryClientProvider>
 	);
 };

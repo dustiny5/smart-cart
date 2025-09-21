@@ -2,6 +2,7 @@
 from typing import List
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from chat_bot import run_agent
 from mcp_http import mcp
 from mcp.server.sse import SseServerTransport
@@ -10,47 +11,19 @@ from starlette.routing import Mount
 # https://gofastmcp.com/integrations/fastapi
 app = FastAPI()
 
+# TODO: Update this when deploying
+origins = ['http://localhost:5173']
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 # https://github.com/panz2018/fastapi_mcp_sse/blob/main/src/app.py
 sse = SseServerTransport("/messages/")
 app.router.routes.append(Mount("/messages", app=sse.handle_post_message))
-
-html = """
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Chat</title>
-    </head>
-    <body>
-        <h1>WebSocket Chat</h1>
-        <h2>Your ID: <span id="ws-id"></span></h2>
-        <form action="" onsubmit="sendMessage(event)">
-            <input type="text" id="messageText" autocomplete="off"/>
-            <button>Send</button>
-        </form>
-        <ul id='messages'>
-        </ul>
-        <script>
-            var client_id = Date.now()
-            document.querySelector("#ws-id").textContent = client_id;
-            var ws = new WebSocket(`ws://localhost:8000/ws/${client_id}`);
-            ws.onmessage = function(event) {
-                var messages = document.getElementById('messages')
-                var message = document.createElement('li')
-                var content = document.createTextNode(event.data)
-                message.appendChild(content)
-                messages.appendChild(message)
-            };
-            function sendMessage(event) {
-                var input = document.getElementById("messageText")
-                ws.send(input.value)
-                input.value = ''
-                event.preventDefault()
-            }
-        </script>
-    </body>
-</html>
-"""
-
 
 class ConnectionManager:
     def __init__(self):
@@ -73,10 +46,6 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-@app.get("/")
-async def get():
-    return HTMLResponse(html)
-
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
     await manager.connect(websocket)
@@ -84,17 +53,11 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
     try:
         while True:
             data = await websocket.receive_text()
-            print('recevied: ', data)
-            # get_ai_response = run_agent(data)
-            # print('response: ', get_ai_response)
             async for text in run_agent(data):
-                print('text: ', text)
-                await manager.send_personal_message(f"Chat Bot: {text}", websocket)
-            # await manager.broadcast(f"Client #{client_id} says: {data}")
+                await manager.send_personal_message(text, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         await manager.send_personal_message(f"Client #{client_id} left the chat", websocket)
-        # await manager.broadcast(f"Client #{client_id} left the chat")
 
 
 
