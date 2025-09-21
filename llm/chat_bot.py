@@ -170,12 +170,8 @@ async def run_agent(query: str):
     first = None
     last = None
     async for event in events:
-        print("*******************************\n")
-        event['messages'][-1].pretty_print()
-        print("*******************************\n")
         if first is None:
             first = event['messages'][-1].content
-            yield first
         last = event['messages'][-1].content
     if last is not None and last != first:
         yield last
