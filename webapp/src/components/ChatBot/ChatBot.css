@@ -34,11 +34,11 @@
 	@apply flex flex-col-reverse h-96 overflow-y-auto;
 }
 .chat-bot-message {
-	@apply text-sm text-white border-4 border-white rounded-xl ml-auto px-2 text-end resize-none break-words whitespace-pre-line;
+	@apply text-sm text-white border-4 border-white rounded-xl ml-auto px-2 resize-none break-words whitespace-pre-line;
 }
 .chat-bot-user-message {
-	@apply bg-[#23A6F0];
+	@apply bg-[#23A6F0] text-end;
 }
 .chat-bot-bot-message {
-	@apply bg-[#23c21e];
+	@apply bg-[#23c21e] text-start;
 }
