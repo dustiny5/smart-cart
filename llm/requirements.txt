@@ -31,8 +31,8 @@ jsonpointer==3.0.0
 jsonschema==4.25.1
 jsonschema-specifications==2025.9.1
 langchain==0.3.27
+langchain-core==0.3.76
 langchain-community==0.3.30
-langchain-core==0.3.75
 langchain-experimental==0.3.4
 langchain-mcp-adapters==0.1.9
 langchain-ollama==0.3.7
