@@ -50,7 +50,7 @@ mcp==1.13.1
 mdurl==0.1.2
 multidict==6.6.4
 mypy_extensions==1.1.0
-numpy==2.2.6
+numpy==2.3.3
 ollama==0.5.3
 orjson==3.11.3
 ormsgpack==1.10.0
